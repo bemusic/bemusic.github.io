@@ -17,10 +17,6 @@ describe('Scintillator', function() {
       return expect(Scintillator.load(fixture('invalid_tag.xml')))
           .to.be.rejected
     })
-    it('should reject if image not declared', function() {
-      return expect(Scintillator.load(fixture('invalid_no_image.xml')))
-          .to.be.rejected
-    })
   })
 
   describe('Context', function() {
@@ -84,6 +80,27 @@ describe('Scintillator', function() {
       return expect(Scintillator.load(fixture('sprite_invalid_blend.xml')))
                 .to.be.rejected
     })
+  })
+
+  describe('TextNode', function() {
+    it('should display text', co.wrap(function*() {
+      let skin = yield Scintillator.load(fixture('text.xml'))
+      let context = new Scintillator.Context(skin)
+      let stage = context.stage
+      context.render({ })
+      let text = stage.children[0]
+      expect(text.text).to.equal('Hello world')
+      context.destroy()
+    }))
+    it('should support data interpolation', co.wrap(function*() {
+      let skin = yield Scintillator.load(fixture('text_interpolation.xml'))
+      let context = new Scintillator.Context(skin)
+      let stage = context.stage
+      context.render({ lol: 'wow' })
+      let text = stage.children[0]
+      expect(text.text).to.equal('Hello world wow')
+      context.destroy()
+    }))
   })
 
   describe('ObjectNode', function() {
