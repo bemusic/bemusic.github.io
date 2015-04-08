@@ -52,7 +52,20 @@ mixin notes(columns)
     +longnote('p1_longnote_' + ch, x, cur, 0, '!active && !missed')
     +longnote('p1_longnote_' + ch, x, cur, 100, '!!active && !missed')
     +longnote('p1_longnote_' + ch, x, cur, 200, '!!missed')
+    - x = x + cur.width + 1
 
+mixin explosions(columns)
+  - var x = 0
+  each column in columns
+    - var cur = styles[column.style]
+    - var ch  = column.channel
+    group(x=(x + cur.width / 2) y='550')
+      animation
+        keyframe(t='0' alpha='0' scale-x='1' scale-y='1')
+      animation(on='p1_' + ch + '_explode')
+        keyframe(t='0' alpha='1' scale-x='2' scale-y='1')
+        keyframe(t='0.18' alpha='0' scale-x='2' scale-y='2')
+      sprite(image='Explosion/NoteExplosion.png' x='-25' y='-25' blend='screen')
     - x = x + cur.width + 1
 
 mixin note-area(modeObject)
@@ -61,6 +74,29 @@ mixin note-area(modeObject)
           alpha='1 - (t % 0.4) / 0.4')
   group(x='1' mask='283x550+1+0')
     +notes(modeObject.columns)
+  group(x='1')
+    +explosions(modeObject.columns)
+  +press-start
+  group(y='400')
+    +judgments
+
+mixin press-start
+  group(x='140' y='400' alpha='1')
+    animation
+      keyframe(t='0' alpha='1')
+    animation(on='started')
+      keyframe(t='0' alpha='0')
+    sprite(image='NotePanel/PressStart.png' x='-107' y='-40' ref='start')
+  group(x='140' y='400' alpha='0')
+    animation(on='started')
+      keyframe(t='0' alpha='0.5' scale-x='1' scale-y='1')
+      keyframe(t='0.3' alpha='0' scale-x='1.5' scale-y='1.5')
+    sprite(image='NotePanel/PressStart.png' x='-107' y='-40' blend='screen')
+  group(x='140' y='400' alpha='0')
+    animation(on='started')
+      keyframe(t='0' alpha='0.5' scale-x='1' scale-y='1')
+      keyframe(t='0.3' alpha='0' scale-x='0.67' scale-y='0.67')
+    sprite(image='NotePanel/PressStart.png' x='-107' y='-40' blend='screen')
 
 mixin judgments
   +judgment('1')

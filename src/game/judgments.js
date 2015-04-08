@@ -1,6 +1,21 @@
 
 import R from 'ramda'
 
+// >> game/judgments
+//
+// When hitting the note, the accuracy of your button press will be judged
+// according to this table:
+//
+// ============== ===================== ================
+//      Name        Maximum Offset (ms)   Accuracy Score
+// ============== ===================== ================
+//   METICULOUS!                     20             100%
+//     PRECISE!                      50              80%
+//      GOOD!                       100              50%
+//     OFFBEAT!                     200               0%
+//     MISSED!                       --               0%
+// ============== ===================== ================
+
 export const UNJUDGED = 0
 export const MISSED = -1
 
@@ -42,4 +57,10 @@ export function breaksCombo(judgment) {
   return judgment === MISSED || isBad(judgment)
 }
 
+export function weight(judgment) {
+  if (judgment === 1) return 100
+  if (judgment === 2) return 80
+  if (judgment === 3) return 50
+  return 0
+}
 

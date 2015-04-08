@@ -423,7 +423,112 @@
           <sprite image="Note/DX/Note.png" frame="34x8+62+212" x="248" y="(y*550)-12" visible="!!missed"></sprite>
         </object>
       </group>
-      <group y="400" x="10">
+      <group x="1">
+        <group x="30.5" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_SC_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="79" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_1_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="110" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_2_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="141" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_3_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="172" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_4_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="203" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_5_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="234" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_6_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+        <group x="265" y="550">
+          <animation>
+            <keyframe t="0" alpha="0" scale-x="1" scale-y="1"></keyframe>
+          </animation>
+          <animation on="p1_7_explode">
+            <keyframe t="0" alpha="1" scale-x="2" scale-y="1"></keyframe>
+            <keyframe t="0.18" alpha="0" scale-x="2" scale-y="2"></keyframe>
+          </animation>
+          <sprite image="Explosion/NoteExplosion.png" x="-25" y="-25" blend="screen"></sprite>
+        </group>
+      </group>
+      <group x="140" y="400" alpha="1">
+        <animation>
+          <keyframe t="0" alpha="1"></keyframe>
+        </animation>
+        <animation on="started">
+          <keyframe t="0" alpha="0"></keyframe>
+        </animation>
+        <sprite image="NotePanel/PressStart.png" x="-107" y="-40" ref="start"></sprite>
+      </group>
+      <group x="140" y="400" alpha="0">
+        <animation on="started">
+          <keyframe t="0" alpha="0.5" scale-x="1" scale-y="1"></keyframe>
+          <keyframe t="0.3" alpha="0" scale-x="1.5" scale-y="1.5"></keyframe>
+        </animation>
+        <sprite image="NotePanel/PressStart.png" x="-107" y="-40" blend="screen"></sprite>
+      </group>
+      <group x="140" y="400" alpha="0">
+        <animation on="started">
+          <keyframe t="0" alpha="0.5" scale-x="1" scale-y="1"></keyframe>
+          <keyframe t="0.3" alpha="0" scale-x="0.67" scale-y="0.67"></keyframe>
+        </animation>
+        <sprite image="NotePanel/PressStart.png" x="-107" y="-40" blend="screen"></sprite>
+      </group>
+      <group y="400">
         <group alpha="0">
           <animation on="p1_judge_1">
             <keyframe t="0" y="-16" alpha="1"></keyframe>
@@ -540,20 +645,36 @@
       <keyframe t="0.3" y="617" ease="quadOut"></keyframe>
     </animation>
     <sprite image="Touch/ButtonPanel.png"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="102.5" y="160" ref="p1_1"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="102.5" y="160" alpha="p1_1_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="181.5" y="20" ref="p1_2"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="181.5" y="20" alpha="p1_2_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="260.5" y="160" ref="p1_3"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="260.5" y="160" alpha="p1_3_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="339.5" y="20" ref="p1_4"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="339.5" y="20" alpha="p1_4_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="418.5" y="160" ref="p1_5"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="418.5" y="160" alpha="p1_5_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="497.5" y="20" ref="p1_6"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="497.5" y="20" alpha="p1_6_active"></sprite>
-      <sprite image="Touch/Buttons/Normal.png" x="576.5" y="160" ref="p1_7"></sprite>
-      <sprite image="Touch/Buttons/Active.png" x="576.5" y="160" alpha="p1_7_active"></sprite>
+      <group x="102.5" y="160">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_1"></sprite>
+        <text x="75" y="32" text="Score" align="center" font="InfoSmall" font-src="Fonts/InfoSmall.fnt"></text>
+        <text x="75" y="56" text="%s" align="center" data="p1_score" font="ScoreNumberSmall" font-src="Fonts/ScoreNumberSmall.fnt"></text>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_1_active"></sprite>
+      </group>
+      <group x="181.5" y="20">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_2"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_2_active"></sprite>
+      </group>
+      <group x="260.5" y="160">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_3"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_3_active"></sprite>
+      </group>
+      <group x="339.5" y="20">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_4"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_4_active"></sprite>
+      </group>
+      <group x="418.5" y="160">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_5"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_5_active"></sprite>
+      </group>
+      <group x="497.5" y="20">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_6"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_6_active"></sprite>
+      </group>
+      <group x="576.5" y="160">
+        <sprite image="Touch/Buttons/Normal.png" x="0" y="0" ref="p1_7"></sprite>
+        <sprite image="Touch/Buttons/Active.png" x="-1" y="-1" alpha="p1_7_active"></sprite>
+      </group>
     <sprite image="Touch/Scratch/ScratchAreaL.png" x="0" y="8" ref="p1_SC"></sprite>
     <sprite image="Touch/Scratch/ScratchGlowL.png" x="0" y="6" alpha="p1_SC_active"></sprite>
   </group>

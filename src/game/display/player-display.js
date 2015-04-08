@@ -1,26 +1,30 @@
 
 import NoteArea from './note-area'
-import { MISSED } from '../judgments'
+import { MISSED, breaksCombo } from '../judgments'
 
 export class PlayerDisplay {
   constructor(player) {
     let notechart = player.notechart
-    this._player    = player
-    this._noteArea  = new NoteArea(notechart.notes, notechart.barLines)
-    this._stateful  = { }
+    this._player      = player
+    this._noteArea    = new NoteArea(notechart.notes, notechart.barLines)
+    this._stateful    = { }
+    this._defaultData = {
+      placement: player.options.placement,
+    }
   }
   update(time, gameTime, playerState) {
     let player   = this._player
     let noteArea = this._noteArea
     let stateful = this._stateful
     let position = player.notechart.secondsToPosition(gameTime)
-    let data     = { }
+    let data     = Object.assign({ }, this._defaultData)
     let push     = (key, value) => (data[key] || (data[key] = [])).push(value)
 
     updateVisibleNotes()
     updateBarLines()
     updateInput()
     updateJudgment()
+    updateExplode()
     Object.assign(data, stateful)
     return data
 
@@ -73,12 +77,24 @@ export class PlayerDisplay {
     }
 
     function updateJudgment() {
-      let notification = playerState.notifications.judgment
+      let notifications = playerState.notifications.judgments
+      let notification = notifications[notifications.length - 1]
       if (notification) {
         let name = notification.judgment === -1 ? 'missed' :
               `${notification.judgment}`
         stateful[`judge_${name}`] = time
         stateful[`combo`] = notification.combo
+      }
+      data[`score`] = playerState.stats.score
+    }
+
+    function updateExplode() {
+      let notifications = playerState.notifications.judgments
+      for (let i = 0; i < notifications.length; i ++) {
+        let notification = notifications[i]
+        if (!breaksCombo(notification.judgment)) {
+          stateful[`${notification.column}_explode`] = time
+        }
       }
     }
 
