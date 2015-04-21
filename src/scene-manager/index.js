@@ -1,5 +1,6 @@
 
-import co from 'co'
+import co     from 'co'
+import React  from 'react'
 
 // The SceneManager takes care of managing the scenes in this game.
 // Only a single scene may be displayed at any given time, but a scene may
@@ -10,10 +11,12 @@ import co from 'co'
 //    var scene = function onEnter(container) {
 //      // container :: HTMLElement
 //      // add DOM elements to container
-//      return function onExit() {
-//        return new Promise(function(resolve) {
-//          // when the scene finish exiting, call resolve()
-//        })
+//      return {
+//        teardown() {
+//          return new Promise(function(resolve) {
+//            // when the scene finish exiting, call resolve()
+//          })
+//        }
 //      }
 //    }
 //
@@ -29,16 +32,17 @@ export class SceneManager {
   // Displays the scene and returns a promise that resolves when the old
   // scene finishes exiting.
   display(scene) {
+    if (typeof scene !== 'function') scene = new ReactScene(scene)
     return co(function*() {
-      if (this.exit) {
-        yield Promise.resolve(this.exit())
+      if (this.currentScene) {
+        yield Promise.resolve(this.currentScene.teardown())
         detach(this.currentElement)
       }
       var element = document.createElement('div')
-      element.className = 'scene'
+      element.className = 'scene-manager--scene'
       document.body.appendChild(element)
       this.currentElement = element
-      this.exit = scene(element)
+      this.currentScene = scene(element)
     })
   }
 }
@@ -53,3 +57,14 @@ function detach(element) {
 export let instance = new SceneManager()
 
 export default instance
+
+function ReactScene(element) {
+  return function instantiate(container) {
+    let component = React.render(element, container)
+    return {
+      teardown() {
+        if (component.teardown) return component.teardown()
+      }
+    }
+  }
+}

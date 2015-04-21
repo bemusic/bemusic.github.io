@@ -4,7 +4,7 @@ import Control from './control'
 import _ from 'lodash'
 
 
-import query from 'bemuse/query'
+import query from 'bemuse/utils/query'
 
 function HardcodedKeyboardPlugin() {
   let kbm = (query.keyboard || '').split(',').map(x => +x)
@@ -41,7 +41,7 @@ function GamepadPlugin() {
     return gamepads.some(gamepad => gamepad.buttons[i].pressed)
   }
   function axis(i) {
-    for (var j = 0; j < gamepads.length; j ++) {
+    for (var j = 0; j < gamepads.length; j++) {
       var gamepad = gamepads[j]
       if (Math.abs(gamepad.axes[i]) > 0.01) return gamepad.axes[i]
     }
@@ -125,4 +125,3 @@ export class GameInput {
 }
 
 export default GameInput
-

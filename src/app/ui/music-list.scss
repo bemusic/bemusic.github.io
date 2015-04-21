@@ -1,0 +1,13 @@
+@import "~bemuse/ui/common";
+
+.music-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .music-list-item {
+    margin: 2vmin;
+    margin-left: 5vw;
+    margin-right: 52vw;
+  }
+}
