@@ -1,36 +1,7 @@
 
-import $ from 'jquery'
-import Control from './control'
-import _ from 'lodash'
-
-
-import query from 'bemuse/utils/query'
-
-function HardcodedKeyboardPlugin() {
-  let kbm = (query.keyboard || '').split(',').map(x => +x)
-  let data = { }
-  $(window)
-  .keydown(e => data[e.which] = 1)
-  .keyup(e => data[e.which] = 0)
-  return {
-    get() {
-      return {
-        'p1_1':  data[kbm[0] || 83],
-        'p1_2':  data[kbm[1] || 68],
-        'p1_3':  data[kbm[2] || 70],
-        'p1_4':  data[kbm[3] || 32],
-        'p1_5':  data[kbm[4] || 74],
-        'p1_6':  data[kbm[5] || 75],
-        'p1_7':  data[kbm[6] || 76],
-        'p1_SC': data[kbm[7] || 65],
-        'p1_speedup': data[38],
-        'p1_speeddown': data[40],
-        'start': data[13],
-        'select': data[18],
-      }
-    }
-  }
-}
+import Control  from './control'
+import _        from 'lodash'
+import bench    from 'bemuse/devtools/benchmark'
 
 function GamepadPlugin() {
   let gamepads = []
@@ -48,6 +19,7 @@ function GamepadPlugin() {
     return 0
   }
   return {
+    name: 'GamepadPlugin',
     get() {
       var out = {
         'p1_1': button(3),
@@ -74,7 +46,6 @@ export class GameInput {
   constructor() {
     this._controls = new Map()
     this._plugins = []
-    this.use(new HardcodedKeyboardPlugin())
     this.use(new GamepadPlugin())
   }
   update() {
@@ -110,7 +81,8 @@ export class GameInput {
   }
   use(plugin) {
     let state = { }
-    this._plugins.push(function() {
+    let name = 'input:' + plugin.name
+    this._plugins.push(bench.wrap(name, function() {
       let out = plugin.get()
       let diff = [ ]
       for (let key of _.union(_.keys(out), _.keys(state))) {
@@ -120,7 +92,7 @@ export class GameInput {
         state[key] = current
       }
       return diff
-    })
+    }))
   }
 }
 
