@@ -2,10 +2,12 @@
 import readBlob from 'bemuse/utils/read-blob'
 import defaultAudioContext from 'audio-context'
 
+export const FADE_LENGTH = 0.001
+
 let dummyAudioTag = document.createElement('audio')
 
 // Checks whether an audio format is supported.
-export function canPlay(type) {
+export function canPlay (type) {
   return dummyAudioTag.canPlayType(type) === 'probably'
 }
 
@@ -15,7 +17,7 @@ export function canPlay(type) {
 // - Decoding audio from an ArrayBuffer or Blob (resulting in a "Sample").
 // - Playing the `Sample` and managing its lifecycle.
 export class SamplingMaster {
-  constructor(audioContext) {
+  constructor (audioContext) {
     this._audioContext  = audioContext || defaultAudioContext
     this._samples       = []
     this._instances     = new Set()
@@ -24,17 +26,17 @@ export class SamplingMaster {
   // Connects a dummy node to the audio, thereby unmuting the audio system on
   // iOS devices (which keeps the audio muted until a user interacts with the
   // page).
-  unmute() {
+  unmute () {
     unmuteAudio(this._audioContext)
   }
 
   // The underlying AudioContext.
-  get audioContext() {
+  get audioContext () {
     return this._audioContext
   }
 
   // Destroys this SamplingMaster, make it unusable.
-  destroy() {
+  destroy () {
     if (this._destroyed) return
     this._destroyed = true
     for (let sample of this._samples) sample.destroy()
@@ -44,7 +46,7 @@ export class SamplingMaster {
   }
 
   // Creates a `Sample` from a Blob or an ArrayBuffer.
-  sample(blobOrArrayBuffer) {
+  sample (blobOrArrayBuffer) {
     return this._coerceToArrayBuffer(blobOrArrayBuffer)
     .then(arrayBuffer => this._decodeAudio(arrayBuffer))
     .then(audioBuffer => {
@@ -55,7 +57,7 @@ export class SamplingMaster {
     })
   }
 
-  _coerceToArrayBuffer(blobOrArrayBuffer) {
+  _coerceToArrayBuffer (blobOrArrayBuffer) {
     if (blobOrArrayBuffer instanceof ArrayBuffer) {
       return Promise.resolve(blobOrArrayBuffer)
     } else {
@@ -63,24 +65,24 @@ export class SamplingMaster {
     }
   }
 
-  _decodeAudio(arrayBuffer) {
+  _decodeAudio (arrayBuffer) {
     return new Promise((resolve, reject) => {
       this.audioContext.decodeAudioData(arrayBuffer,
-        function decodeAudioDataSuccess(audioBuffer) {
+        function decodeAudioDataSuccess (audioBuffer) {
           resolve(audioBuffer)
         },
-        function decodeAudioDataFailure(e) {
+        function decodeAudioDataFailure (e) {
           reject('Unable to decode audio: ' + e)
         }
       )
     })
   }
 
-  _startPlaying(instance) {
+  _startPlaying (instance) {
     this._instances.add(instance)
   }
 
-  _stoppedPlaying(instance) {
+  _stoppedPlaying (instance) {
     this._instances.delete(instance)
   }
 
@@ -92,18 +94,18 @@ export class SamplingMaster {
 // `SamplingMaster#create`.
 class Sample {
 
-  constructor(samplingMaster, audioBuffer) {
+  constructor (samplingMaster, audioBuffer) {
     this._master = samplingMaster
     this._buffer = audioBuffer
   }
 
   // Plays the sample and returns the new PlayInstance.
-  play(delay, options) {
+  play (delay, options) {
     return new PlayInstance(this._master, this._buffer, delay, options)
   }
 
   // Destroys this sample, thereby making it unusable.
-  destroy() {
+  destroy () {
     this._master = null
     this._buffer = null
   }
@@ -116,10 +118,12 @@ class Sample {
 //
 // You don't invoke this constructor directly; it is invoked by `Sample#play`.
 class PlayInstance {
-  constructor(samplingMaster, buffer, delay, options) {
+  constructor (samplingMaster, buffer, delay, options) {
     delay = delay || 0
     options = options || { }
     this._master = samplingMaster
+
+    // Connect all the stuff...
     let context = samplingMaster.audioContext
     let source = context.createBufferSource()
     source.buffer = buffer
@@ -130,19 +134,35 @@ class PlayInstance {
     gain.connect(node)
     this._source = source
     this._gain = gain
-    let startTime   = !delay ? 0 : Math.max(0, context.currentTime + delay)
+
+    // Start the sound.
+    let startTime = !delay ? 0 : Math.max(0, context.currentTime + delay)
     let startOffset = options.start || 0
+    let fadeIn = startOffset > 0
+    let fadeOutAt = false
+    if (fadeIn) {
+      gain.gain.setValueAtTime(0, 0)
+    }
     if (options.end !== undefined) {
-      let duration  = Math.max(options.end - startOffset, 0)
-      source.start(startTime, startOffset, duration)
+      let duration = Math.max(options.end - startOffset, 0)
+      source.start(startTime, startOffset, duration + FADE_LENGTH)
+      fadeOutAt = context.currentTime + delay + duration
     } else {
       source.start(startTime, startOffset)
+    }
+    if (fadeIn) {
+      gain.gain.setValueAtTime(0, context.currentTime + delay)
+      gain.gain.linearRampToValueAtTime(1, context.currentTime + delay + FADE_LENGTH)
+    }
+    if (fadeOutAt !== false) {
+      gain.gain.setValueAtTime(1, fadeOutAt)
+      gain.gain.linearRampToValueAtTime(0, fadeOutAt + FADE_LENGTH)
     }
     this._master._startPlaying(this)
   }
 
   // Stops the sample and disconnects the underlying Web Audio nodes.
-  stop() {
+  stop () {
     if (!this._source) return
     this._source.stop(0)
     this._source.disconnect()
@@ -155,15 +175,16 @@ class PlayInstance {
 
   // Makes this PlayInstance sound off-pitch, as a result of badly hitting
   // a note.
-  bad() {
+  bad () {
     if (!this._source) return
-    this._source.playbackRate.value = (Math.random() < 0.5 ?
-      Math.pow(2,  1 / 12) :
-      Math.pow(2, -1 / 12))
+    this._source.playbackRate.value = (Math.random() < 0.5
+      ? Math.pow(2,  1 / 12)
+      : Math.pow(2, -1 / 12)
+    )
   }
 
   // Destroys this PlayInstance.
-  destroy() {
+  destroy () {
     this.stop()
   }
 
@@ -171,7 +192,7 @@ class PlayInstance {
 
 export default SamplingMaster
 
-export function unmuteAudio(ctx) {
+export function unmuteAudio (ctx) {
   let gain = ctx.createGain()
   gain.connect(ctx.destination)
   gain.disconnect()

@@ -1,19 +1,26 @@
 
 import PIXI from 'pixi.js'
 
-function createRenderer(w, h) {
-  if (navigator.userAgent.match(/Gecko\//)) {
-    // return new PIXI.autoDetectRenderer(w, h, { transparent: true })
-    // Disable WebGL for the moment because it has some problem with rendering
-    // sprite batches: https://github.com/pixijs/pixi.js/issues/1910
-    return new PIXI.CanvasRenderer(w, h, { transparent: true })
-  } else {
-    return new PIXI.CanvasRenderer(w, h, { transparent: true })
-  }
+function createRenderer (w, h) {
+  hackPIXIToForceNewBlendModes()
+
+  // For now, we are using CanvasRenderer instead of WebGLRenderer or
+  // autoDetectRenderer befcause of two reasons.
+  // 1. Current implementation has some problem with rendering
+  //    sprite batches: https://github.com/pixijs/pixi.js/issues/1910
+  // 2. It seems that Canvas performs better on some browsers, i.e. Chrome.
+  //    WebGLRenderer only performs better on Firefox from the experiment.
+  return new PIXI.CanvasRenderer(w, h, { transparent: true })
+}
+
+// HACK: Sometimes, when using the canvas renderer,
+// the blend mode is not properly set.
+function hackPIXIToForceNewBlendModes () {
+  PIXI.utils.canUseNewCanvasBlendModes = () => true
 }
 
 export class Context {
-  constructor(skin) {
+  constructor (skin) {
     this.refs       = { }
     this._skin      = skin
     this._instance  = skin.instantiate(this)
@@ -22,28 +29,28 @@ export class Context {
     this.view       = this._renderer.view
     this._setupInteractivity()
   }
-  render(data) {
+  render (data) {
     this._instance.push(data)
     this._renderer.render(this.stage)
   }
-  destroy() {
+  destroy () {
     this._instance.destroy()
     this._instance = null
     this._teardownInteractivity()
   }
-  get input() {
+  get input () {
     return this._input.get()
   }
-  ref(key, object) {
+  ref (key, object) {
     let set = this.refs[key] || (this.refs[key] = new Set())
     set.add(object)
   }
-  unref(key, object) {
+  unref (key, object) {
     let set = this.refs[key]
     if (!set) return
     set.delete(object)
   }
-  _setupInteractivity() {
+  _setupInteractivity () {
     let mouse         = null
     let touches       = [ ]
     let onMouse       = (e) => { mouse = e }
@@ -81,7 +88,7 @@ export class Context {
         return output
       }
     }
-    function point(id, p, rect) {
+    function point (id, p, rect) {
       return {
         x: (p.clientX - rect.left) / rect.width * width,
         y: (p.clientY - rect.top) / rect.height * height,
