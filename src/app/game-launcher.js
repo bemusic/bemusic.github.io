@@ -21,7 +21,7 @@ import OptionsStore           from './stores/options-store'
 import OptionsInputStore      from './stores/options-input-store'
 import { MISSED }             from 'bemuse/game/judgments'
 
-import { shouldDisableFullScreen } from 'bemuse/devtools/query-flags'
+import { shouldDisableFullScreen, isTitleDisplayMode } from 'bemuse/devtools/query-flags'
 
 export function launch ({ server, song, chart }) {
   return co(function*() {
@@ -82,8 +82,11 @@ export function launch ({ server, song, chart }) {
     })
     yield SCENE_MANAGER.push(loadingScene)
 
+    // if in title display mode, stop
+    if (isTitleDisplayMode()) return
+
     // send data to analytics
-    Analytics.gameStart(song, chart)
+    Analytics.gameStart(song, chart, optionsStoreState.scratch ? 'BM' : 'KB')
 
     // wait for game to load and display the game
     let controller = yield promise
@@ -104,7 +107,10 @@ export function launch ({ server, song, chart }) {
 
     // display evaluation
     if (state.finished) {
+      Analytics.action('Game:finish')
       yield showResult(playerState, chart)
+    } else {
+      Analytics.action('Game:escape')
     }
     controller.destroy()
 
@@ -130,6 +136,7 @@ function showResult (playerState, chart) {
         'accuracy':   stats.accuracy,
         'totalCombo': stats.totalCombo,
         'log':        stats.log,
+        'deltas':     stats.deltas,
         'grade':      getGrade(stats),
       },
       chart:    chart,
