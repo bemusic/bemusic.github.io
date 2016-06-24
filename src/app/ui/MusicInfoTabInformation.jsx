@@ -3,14 +3,38 @@ import './MusicInfoTabInformation.scss'
 
 import React  from 'react'
 
-import { connect } from 'bemuse/flux'
-import ReadmeStore from '../stores/readme-store'
+import { connect } from 'react-redux'
+import connectIO from '../../impure-react/connectIO'
+import { compose } from 'recompose'
+import * as ReadmeIO from '../io/ReadmeIO'
+import * as ReduxState from '../redux/ReduxState'
 
 import Markdown from 'bemuse/ui/Markdown'
 import YouTube  from 'bemuse/ui/YouTube'
 
-export const MusicInfoTabInformation = React.createClass({
+const enhance = compose(
+  connect((state) => ({
+    readme: ReduxState.selectReadmeTextForSelectedSong(state)
+  })),
+  connectIO({
+    onRequestReadme: () => (song) => ReadmeIO.requestReadme(song)
+  })
+)
 
+export const MusicInfoTabInformation = React.createClass({
+  propTypes: {
+    song: React.PropTypes.object,
+    readme: React.PropTypes.string,
+    onRequestReadme: React.PropTypes.func
+  },
+  componentDidMount () {
+    this.props.onRequestReadme(this.props.song)
+  },
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.song !== this.props.song) {
+      this.props.onRequestReadme(nextProps.song)
+    }
+  },
   render () {
     const song = this.props.song
     return <div className="MusicInfoTabInformation">
@@ -21,7 +45,7 @@ export const MusicInfoTabInformation = React.createClass({
       </p>
       {song.youtube_url ? <YouTube url={song.youtube_url} /> : null}
       <section className="MusicInfoTabInformationのreadme">
-        <Markdown source={this.props.readme.text} />
+        <Markdown source={this.props.readme} />
       </section>
     </div>
   },
@@ -39,6 +63,9 @@ export const MusicInfoTabInformation = React.createClass({
     if (song.long_url) {
       buttons.push(link('Long Version', song.long_url))
     }
+    if (song.bmssearch_id) {
+      buttons.push(link('BMS Search', 'http://bmssearch.net/bms?id=' + song.bmssearch_id))
+    }
     if (buttons.length === 0) {
       return null
     } else {
@@ -47,7 +74,7 @@ export const MusicInfoTabInformation = React.createClass({
   },
 })
 
-export default connect({ readme: ReadmeStore }, MusicInfoTabInformation)
+export default enhance(MusicInfoTabInformation)
 
 function link (text, url) {
   return (

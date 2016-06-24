@@ -1,6 +1,7 @@
 
 import query from 'bemuse/utils/query'
-import MAIN  from 'bemuse/utils/main-element'
+import MAIN from 'bemuse/utils/main-element'
+import ReactDOM from 'react-dom'
 import React from 'react'
 
 const availablePlaygrounds = (function (context) {
@@ -15,7 +16,7 @@ const availablePlaygrounds = (function (context) {
 const DefaultPlayground = React.createClass({
   statics: {
     main () {
-      React.render(<DefaultPlayground />, MAIN)
+      ReactDOM.render(<DefaultPlayground />, MAIN)
     }
   },
   render () {
@@ -27,7 +28,7 @@ const DefaultPlayground = React.createClass({
         {Object.keys(availablePlaygrounds)
             .map(key => <li>
               <a style={linkStyle}
-                  href={'?mode=playground&playground=' + key}>{key}</a>
+                href={'?mode=playground&playground=' + key}>{key}</a>
             </li>)}
       </ul>
     </div>

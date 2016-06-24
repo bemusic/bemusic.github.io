@@ -1,8 +1,9 @@
 
-import co           from 'co'
-import { resolve }  from 'url'
-import screenfull   from 'screenfull'
-import React        from 'react'
+import invariant                 from 'invariant'
+import co                        from 'co'
+import { resolve as resolveUrl } from 'url'
+import screenfull                from 'screenfull'
+import React                     from 'react'
 
 // TODO: remove this dependency and use Options
 import query                  from 'bemuse/utils/query'
@@ -11,26 +12,26 @@ import { getGrade }           from 'bemuse/rules/grade'
 import SCENE_MANAGER          from 'bemuse/scene-manager'
 import URLResource            from 'bemuse/resources/url'
 import BemusePackageResources from 'bemuse/resources/bemuse-package'
-import * as GameLoader        from 'bemuse/game/loaders/game-loader'
 import GameScene              from 'bemuse/game/game-scene'
 import LoadingScene           from 'bemuse/game/ui/LoadingScene.jsx'
 import ResultScene            from './ui/ResultScene'
 import * as Analytics         from './analytics'
-import * as OptionsActions    from './actions/options-actions'
-import OptionsStore           from './stores/options-store'
-import OptionsInputStore      from './stores/options-input-store'
 import { MISSED }             from 'bemuse/game/judgments'
 import { unmuteAudio }        from 'bemuse/sampling-master'
+import * as Options           from './entities/Options'
+import createAutoVelocity     from './interactors/createAutoVelocity'
 
 import { shouldDisableFullScreen, isTitleDisplayMode } from 'bemuse/devtools/query-flags'
 
-export function launch ({ server, song, chart }) {
+if (module.hot) {
+  module.hot.accept('bemuse/game/loaders/game-loader')
+}
 
+export function launch ({ server, song, chart, options, saveSpeed, saveLeadTime }) {
   // Unmute audio immediately so that it sounds on iOS.
   unmuteAudio()
 
-  return co(function*() {
-
+  return co(function * () {
     // go fullscreen
     if (screenfull.enabled && !shouldDisableFullScreen()) {
       let safari = /Safari/.test(navigator.userAgent) &&
@@ -39,8 +40,7 @@ export function launch ({ server, song, chart }) {
     }
 
     // get the options from the store
-    let optionsStoreState = OptionsStore.get()
-    let options = optionsStoreState.options
+    invariant(options, 'Options must be passed!')
 
     // initialize the loading specification
     let loadSpec  = { }
@@ -49,7 +49,7 @@ export function launch ({ server, song, chart }) {
       loadSpec.bms    = yield song.resources.file(chart.file)
     } else {
       let url         = server.url + '/' + song.path + '/' + encodeURIComponent(chart.file)
-      let assetsUrl   = resolve(url, 'assets/')
+      let assetsUrl   = resolveUrl(url, 'assets/')
       loadSpec.bms    = new URLResource(url)
       loadSpec.assets = new BemusePackageResources(assetsUrl, {
         fallback: url,
@@ -57,8 +57,18 @@ export function launch ({ server, song, chart }) {
       })
     }
 
-    let latency = +query.latency || (+options['system.offset.audio-input'] / 1000) || 0
-    let volume = getVolume(song)
+    const latency = +query.latency || (+options['system.offset.audio-input'] / 1000) || 0
+    const volume = getVolume(song)
+    const scratch = Options.scratchPosition(options)
+    const keyboardMapping = Options.keyboardMapping(options)
+
+    // Speed handling
+    const autoVelocity = createAutoVelocity({
+      enabled: Options.isAutoVelocityEnabled(options),
+      initialSpeed: +options['player.P1.speed'] || 1,
+      desiredLeadTime: Options.leadTime(options),
+      songBPM: chart.bpm.median
+    })
 
     loadSpec.options = {
       audioInputLatency: latency,
@@ -66,18 +76,25 @@ export function launch ({ server, song, chart }) {
       tutorial: song.tutorial,
       players: [
         {
-          speed:      +options['player.P1.speed'] || 1,
-          autoplay:   false,
-          placement:  options['player.P1.panel'],
-          scratch:    optionsStoreState.scratch,
+          speed: autoVelocity.getInitialSpeed(),
+          autoplay: false,
+          placement: options['player.P1.panel'],
+          scratch: scratch,
           input: {
-            keyboard: OptionsInputStore.get().keyCodes,
+            keyboard: keyboardMapping,
           },
         },
       ],
     }
 
+    // set video options
+    if (Options.isBackgroundAnimationsEnabled(options)) {
+      loadSpec.videoUrl = song.video_url
+      loadSpec.videoOffset = +song.video_offset
+    }
+
     // start loading the game
+    const GameLoader = require('bemuse/game/loaders/game-loader')
     let loader = GameLoader.load(loadSpec)
     let { tasks, promise } = loader
 
@@ -93,7 +110,7 @@ export function launch ({ server, song, chart }) {
     if (isTitleDisplayMode()) return
 
     // send data to analytics
-    Analytics.gameStart(song, chart, optionsStoreState.scratch ? 'BM' : 'KB')
+    Analytics.gameStart(song, chart, scratch ? 'BM' : 'KB')
 
     // wait for game to load and display the game
     let controller = yield promise
@@ -108,9 +125,7 @@ export function launch ({ server, song, chart }) {
 
     // get player's state and save options
     let playerState = state.player(state.game.players[0])
-    OptionsActions.setOptions({
-      'player.P1.speed': playerState.speed,
-    })
+    autoVelocity.handleGameFinish(playerState.speed, { saveSpeed, saveLeadTime })
 
     // display evaluation
     if (state.finished) {
@@ -123,12 +138,11 @@ export function launch ({ server, song, chart }) {
 
     // go back to previous scene
     yield SCENE_MANAGER.pop()
-
   })
 }
 
 function showResult (playerState, chart) {
-  return new Promise(_resolve => {
+  return new Promise(resolve => {
     let stats     = playerState.stats
     let playMode  = playerState.player.options.scratch === 'off' ? 'KB' : 'BM'
     let props = {
@@ -148,7 +162,7 @@ function showResult (playerState, chart) {
       },
       chart:    chart,
       playMode: playMode,
-      onExit:   _resolve,
+      onExit:   resolve,
     }
     SCENE_MANAGER.display(React.createElement(ResultScene, props)).done()
   })

@@ -7,7 +7,7 @@ import LoadingContext   from 'bemuse/boot/loading-context'
 
 import * as Multitasker from './multitasker'
 import SamplesLoader    from './samples-loader'
-import NotechartLoader  from './notechart-loader'
+import NotechartLoader  from 'bemuse-notechart/loader'
 import loadImage        from './loadImage'
 
 import Game             from '../game'
@@ -55,7 +55,7 @@ export function load (spec) {
     }
 
     task('Notechart', 'Loading ' + spec.bms.name, [],
-    co.wrap(function*(progress) {
+    co.wrap(function * (progress) {
       let loader        = new NotechartLoader()
       let arraybuffer   = yield bms.read(progress)
       return yield loader.load(arraybuffer, spec.bms, spec.options.players[0])
@@ -81,14 +81,53 @@ export function load (spec) {
       return new SamplingMaster()
     })
 
+    task('Video', spec.videoUrl ? 'Loading video' : null, ['Notechart'],
+    function (notechart, progress) {
+      if (!spec.videoUrl) return Promise.resolve(null)
+      return new Promise((resolve, reject) => {
+        const video = document.createElement('video')
+        video.src = spec.videoUrl
+        video.addEventListener('progress', onProgress, true)
+        video.addEventListener('canplaythrough', onCanPlayThrough, true)
+        video.addEventListener('error', onError, true)
+        video.load()
+
+        function onProgress (e) {
+          if (video.buffered && video.buffered.length && video.duration) {
+            progress.report(
+              video.buffered.end(0) - video.buffered.start(0),
+              video.duration
+            )
+          }
+        }
+        function onCanPlayThrough () {
+          video.removeEventListener('progress', onProgress, true)
+          video.removeEventListener('canplaythrough', onCanPlayThrough, true)
+          const n = video.duration || 100
+          progress.report(n, n)
+          resolve({ element: video, offset: spec.videoOffset })
+        }
+        function onError () {
+          console.warn('Cannot load video... Just skip it!')
+          resolve(null)
+        }
+      })
+    })
+
     task('Game', null, ['Notechart'],
     function (notechart) {
       return new Game([notechart], spec.options)
     })
 
-    task('GameDisplay', null, ['Game', 'Skin', 'SkinContext'],
-    function (game, skin, context) {
-      return new GameDisplay({ game, skin, context, backgroundImagePromise: run('BackgroundImage') })
+    task('GameDisplay', null, ['Game', 'Skin', 'SkinContext', 'Video'],
+    function (game, skin, context, video) {
+      return new GameDisplay({
+        game,
+        skin,
+        context,
+        backgroundImagePromise: run('BackgroundImage'),
+        video
+      })
     })
 
     task('Samples', null, ['SamplingMaster', 'Game'],

@@ -1,6 +1,7 @@
 
 import './TitleScene.scss'
 
+import $                from 'jquery'
 import React            from 'react'
 import Scene            from 'bemuse/ui/Scene'
 import SceneToolbar     from 'bemuse/ui/SceneToolbar'
@@ -8,15 +9,36 @@ import ModalPopup       from 'bemuse/ui/ModalPopup'
 import SCENE_MANAGER    from 'bemuse/scene-manager'
 import version          from 'bemuse/utils/version'
 import * as Analytics   from '../analytics'
-import OptionsStore     from '../stores/options-store'
-import { setOptions }   from '../actions/options-actions'
 import ModeSelectScene  from './ModeSelectScene'
 import AboutScene       from './AboutScene'
 import ChangelogPanel   from './ChangelogPanel'
-import { connect }      from 'bemuse/flux'
+import { connect }      from 'react-redux'
+import connectIO        from '../../impure-react/connectIO'
+import { compose }      from 'recompose'
+import * as OptionsIO   from '../io/OptionsIO'
+
+const enhance = compose(
+  connectIO({
+    onMarkChangelogAsSeen: () => () => (
+      OptionsIO.setOptions({ 'system.last-seen-version': version })
+    ),
+    onTwitterButtonClick: () => () => (
+      OptionsIO.setOptions({ 'system.ack.twitter': '1' })
+    )
+  }),
+  connect((state) => ({
+    hasSeenChangelog: state.options['system.last-seen-version'] === version,
+    clickedTwitterButton: state.options['system.ack.twitter'] === '1'
+  })
+))
 
 export const TitleScene = React.createClass({
-
+  propTypes: {
+    hasSeenChangelog: React.PropTypes.bool,
+    clickedTwitterButton: React.PropTypes.bool,
+    onMarkChangelogAsSeen: React.PropTypes.func.isRequired,
+    onTwitterButtonClick: React.PropTypes.func.isRequired,
+  },
   getInitialState () {
     return {
       changelogModalVisible: false,
@@ -24,7 +46,12 @@ export const TitleScene = React.createClass({
   },
   render () {
     return <Scene className="TitleScene">
-      <div className="TitleSceneのlogo"></div>
+      <div className="TitleSceneのlogo">
+        <div className="TitleSceneのtagline">
+          online, web-based rhythm game
+        </div>
+        <img src={require('./images/logo-with-shadow.svg')} />
+      </div>
       <div className="TitleSceneのenter">
         <a href="javascript://" onClick={this.enterGame}>Enter Game</a>
       </div>
@@ -34,11 +61,12 @@ export const TitleScene = React.createClass({
         <a onClick={this.viewChangelog} href="javascript://">{this.renderVersion()}</a>
         <SceneToolbar.Spacer />
         <a onClick={this.openLink} href="https://www.facebook.com/bemusegame">Facebook</a>
-        <a onClick={this.openLink} href="https://twitter.com/bemusegame">Twitter</a>
-        <a onClick={this.openLink} href="https://medium.com/bemuse-blog">Blog</a>
-        <a onClick={this.openLink} href="https://github.com/bemusic/bemuse">GitHub</a>
-        <a onClick={this.openLink} href="https://gitter.im/bemusic/bemuse">Chat</a>
+        <a onClick={this.openTwitterLink} href="https://twitter.com/bemusegame">
+          {this.renderTextWithBubble('Twitter', !this.props.clickedTwitterButton, 'Like & follow us :)')}
+        </a>
+        <a onClick={this.openLink} href="https://github.com/bemusic/bemuse">Fork me on GitHub</a>
       </SceneToolbar>
+      <div className="TitleSceneのcurtain"></div>
       <ModalPopup
         visible={this.state.changelogModalVisible}
         onBackdropClick={this.toggleChangelogModal}
@@ -46,6 +74,19 @@ export const TitleScene = React.createClass({
         <ChangelogPanel />
       </ModalPopup>
     </Scene>
+  },
+
+  renderTextWithBubble (text, bubble, bubbleText) {
+    return (
+      <span className="TitleSceneのbubbleContainer">
+        {text} {bubble
+          ? <span className="TitleSceneのbubble">
+            <span className="TitleSceneのbubbleContent">{bubbleText}</span>
+          </span>
+          : null
+        }
+      </span>
+    )
   },
 
   renderVersion () {
@@ -61,8 +102,8 @@ export const TitleScene = React.createClass({
   },
   renderNewVersionBubble () {
     return (
-      <span className="TitleSceneのnewVersion">
-        <span className="TitleSceneのnewVersionContent">
+      <span className="TitleSceneのbubble">
+        <span className="TitleSceneのbubbleContent">
           What’s new?
         </span>
       </span>
@@ -71,7 +112,11 @@ export const TitleScene = React.createClass({
 
   openLink (e) {
     e.preventDefault()
-    window.open(e.target.href, '_blank')
+    window.open($(e.target).closest('a').get(0).href, '_blank')
+  },
+  openTwitterLink (e) {
+    this.openLink(e)
+    this.props.onTwitterButtonClick()
   },
   enterGame () {
     SCENE_MANAGER.push(<ModeSelectScene />).done()
@@ -83,7 +128,7 @@ export const TitleScene = React.createClass({
   },
   viewChangelog () {
     this.toggleChangelogModal()
-    this.props.markChangelogAsSeen()
+    this.props.onMarkChangelogAsSeen()
     Analytics.action('TitleScene:viewChangelog')
   },
   toggleChangelogModal () {
@@ -92,13 +137,4 @@ export const TitleScene = React.createClass({
 
 })
 
-const titleScenePropsFromStore川 = OptionsStore.map(
-  state => ({
-    hasSeenChangelog: state.options['system.last-seen-version'] === version,
-    markChangelogAsSeen () {
-      setOptions({ 'system.last-seen-version': version })
-    }
-  })
-)
-
-export default connect(titleScenePropsFromStore川, TitleScene)
+export default enhance(TitleScene)

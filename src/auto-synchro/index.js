@@ -1,6 +1,7 @@
 
 import * as Music       from './music'
 import React            from 'react'
+import ReactDOM         from 'react-dom'
 import ExperimentScene  from './ui/ExperimentScene.jsx'
 import $                from 'jquery'
 import _                from 'lodash'
@@ -20,13 +21,13 @@ export function main () {
     latency: 0,
   }, (state, change) => _.assign({ }, state, change))
 
-  const ConnectedExperimentScene = connect(state川, ExperimentScene)
+  const ConnectedExperimentScene = connect(state川)(ExperimentScene)
 
   const scene = React.createElement(ConnectedExperimentScene, {
     onStart:  () => play(),
   })
 
-  React.render(scene, $('<div></div>').appendTo('body')[0])
+  ReactDOM.render(scene, $('<div></div>').appendTo('body')[0])
 
   let play
 

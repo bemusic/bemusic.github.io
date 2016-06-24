@@ -1,7 +1,6 @@
 
 import Bacon        from 'baconjs'
 import React        from 'react'
-import createHelper from 'recompose/createHelper'
 
 export { Bacon }
 
@@ -34,7 +33,7 @@ export function Store (store, options = {}) {
   store = toProperty(store)
   store.get = () => {
     let data
-    let unsubscribe = store.onValue(_data => data = _data)
+    let unsubscribe = store.onValue(_data => (data = _data))
     setTimeout(unsubscribe)
     return data
   }
@@ -56,13 +55,13 @@ function toProperty (store) {
   }
 }
 
-function _connect (props川, Component) {
+export const connect = (props川) => (Component) => {
   let propsProperty = toProperty(props川)
   return React.createClass({
     getInitialState () {
       this._unsubscribe = propsProperty.onValue(this.handleValue)
       let initialValue
-      const initialUnsubscribe = propsProperty.onValue(value => initialValue = value)
+      const initialUnsubscribe = propsProperty.onValue(value => (initialValue = value))
       initialUnsubscribe()
       return { value: initialValue }
     },
@@ -81,5 +80,3 @@ function _connect (props川, Component) {
     }
   })
 }
-
-export const connect = createHelper(_connect, 'connect')

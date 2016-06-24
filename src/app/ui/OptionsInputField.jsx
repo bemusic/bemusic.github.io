@@ -1,6 +1,7 @@
 
 import './OptionsInputField.scss'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import pure from 'recompose/pure'
 
@@ -21,14 +22,14 @@ export const OptionsInputField = React.createClass({
   },
   render () {
     return <input
-        {..._.omit(this.props, ['stringify', 'parse', 'onChange', 'validator', 'value'])}
-        type="text"
-        ref="input"
-        defaultValue={this.props.stringify(this.props.value)}
-        onChange={this.handleInputChange}
-        onKeyDown={this.handleInputKeyDown}
-        onBlur={this.handleInputBlur}
-        className="OptionsInputField" />
+      {..._.omit(this.props, ['stringify', 'parse', 'onChange', 'validator', 'value'])}
+      type="text"
+      ref="input"
+      defaultValue={this.props.stringify(this.props.value)}
+      onChange={this.handleInputChange}
+      onKeyDown={this.handleInputKeyDown}
+      onBlur={this.handleInputBlur}
+      className="OptionsInputField" />
   },
   handleInputChange (e) {
     let input = e.target
@@ -39,16 +40,18 @@ export const OptionsInputField = React.createClass({
     }
   },
   handleInputBlur () {
-    let input = React.findDOMNode(this.refs.input)
+    let input = ReactDOM.findDOMNode(this.refs.input)
     input.value = this.props.stringify(this.props.value)
     input.classList.remove('is-invalid')
   },
   componentDidUpdate (previousProps, previousState) {
     let newValue = this.props.stringify(this.props.value)
     if (this.props.stringify(previousProps.value) !== newValue) {
-      let input = React.findDOMNode(this.refs.input)
+      let input = ReactDOM.findDOMNode(this.refs.input)
       if (this.props.parse(input.value) !== this.props.parse(newValue)) {
-        input.value = newValue
+        if (document.activeElement !== input) {
+          input.value = newValue
+        }
       }
     }
   },
