@@ -1,7 +1,6 @@
-
-import Control  from './control'
-import _        from 'lodash'
-import bench    from 'bemuse/devtools/benchmark'
+import Control from './control'
+import _ from 'lodash'
+import bench from 'bemuse/devtools/benchmark'
 
 export class GameInput {
   constructor () {
@@ -45,15 +44,15 @@ export class GameInput {
     return this._controls.get(controlName)
   }
   use (plugin) {
-    let state = { }
+    let state = {}
     let name = 'input:' + plugin.name
     this._plugins.push({
       get: bench.wrap(name, function () {
         let out = plugin.get()
-        let diff = [ ]
+        let diff = []
         for (let key of _.union(_.keys(out), _.keys(state))) {
-          let last    = +state[key] || 0
-          let current = +out[key]   || 0
+          let last = +state[key] || 0
+          let current = +out[key] || 0
           if (last !== current) diff.push([key, current])
           state[key] = current
         }
@@ -65,7 +64,7 @@ export class GameInput {
         } else {
           return true
         }
-      },
+      }
     })
   }
 }

@@ -1,46 +1,47 @@
-
 import './OptionsSpeed.scss'
 import OptionsButton from './OptionsButton'
 import OptionsInputField from './OptionsInputField'
 import React from 'react'
-import pure from 'recompose/pure'
 
-export const OptionsSpeed = React.createClass({
+class OptionsSpeed extends React.PureComponent {
   parseSpeed (speedString) {
     return +(+speedString || 1.0).toFixed(1)
-  },
+  }
   stringifySpeed (speed) {
     return speed.toFixed(1)
-  },
-  handleMinusButtonClick () {
+  }
+  handleMinusButtonClick = () => {
     let speed = this.parseSpeed(this.props.value)
     let nextSpeed = speed - (speed > 0.5 ? 0.5 : speed > 0.2 ? 0.3 : 0)
     this.props.onChange(this.stringifySpeed(nextSpeed))
-  },
-  handlePlusButtonClick () {
+  }
+  handlePlusButtonClick = () => {
     let speed = this.parseSpeed(this.props.value)
     let nextSpeed = speed + (speed < 0.5 ? 0.3 : 0.5)
     this.props.onChange(this.stringifySpeed(nextSpeed))
-  },
-  handleSpeedInputChange (nextSpeed) {
+  }
+  handleSpeedInputChange = nextSpeed => {
     this.props.onChange(this.stringifySpeed(nextSpeed))
-  },
+  }
   render () {
-    return <div className="OptionsSpeed">
-      <span className="OptionsSpeedのminus">
-        <OptionsButton onClick={this.handleMinusButtonClick}>-</OptionsButton>
-      </span>
-      <OptionsInputField
-        value={this.parseSpeed(this.props.value)}
-        parse={this.parseSpeed}
-        stringify={this.stringifySpeed}
-        validator={/^\d+(?:\.\d)?$/}
-        onChange={this.handleSpeedInputChange} />
-      <span className="OptionsSpeedのplus">
-        <OptionsButton onClick={this.handlePlusButtonClick}>+</OptionsButton>
-      </span>
-    </div>
-  },
-})
+    return (
+      <div className='OptionsSpeed'>
+        <span className='OptionsSpeedのminus'>
+          <OptionsButton onClick={this.handleMinusButtonClick}>-</OptionsButton>
+        </span>
+        <OptionsInputField
+          value={this.parseSpeed(this.props.value)}
+          parse={this.parseSpeed}
+          stringify={this.stringifySpeed}
+          validator={/^\d+(?:\.\d)?$/}
+          onChange={this.handleSpeedInputChange}
+        />
+        <span className='OptionsSpeedのplus'>
+          <OptionsButton onClick={this.handlePlusButtonClick}>+</OptionsButton>
+        </span>
+      </div>
+    )
+  }
+}
 
-export default pure(OptionsSpeed)
+export default OptionsSpeed

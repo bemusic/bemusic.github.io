@@ -1,5 +1,4 @@
-
-//#region grade
+// #region grade
 export function getGrade (stats) {
   let score = stats.score
   if (score < 300000) return 'F'
@@ -9,4 +8,4 @@ export function getGrade (stats) {
   if (score < 500000) return 'A'
   return 'S'
 }
-//#endregion
+// #endregion

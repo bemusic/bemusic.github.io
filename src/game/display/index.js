@@ -7,12 +7,13 @@ import PlayerDisplay from './player-display'
 
 export class GameDisplay {
   constructor ({ game, context, backgroundImagePromise, video }) {
-    this._game      = game
-    this._context   = context
-    this._players   = new Map(game.players.map(player =>
-        [player, new PlayerDisplay(player)]))
-    this._stateful  = { }
-    this._wrapper   = this._createWrapper({
+    this._game = game
+    this._context = context
+    this._players = new Map(
+      game.players.map(player => [player, new PlayerDisplay(player)])
+    )
+    this._stateful = {}
+    this._wrapper = this._createWrapper({
       backgroundImagePromise,
       video,
       panelPlacement: game.players[0].options.placement
@@ -20,9 +21,9 @@ export class GameDisplay {
   }
   start () {
     this._started = new Date().getTime()
-    let player    = this._game.players[0]
-    let songInfo  = player.notechart.songInfo
-    this._stateful['song_title']  = songInfo.title
+    let player = this._game.players[0]
+    let songInfo = player.notechart.songInfo
+    this._stateful['song_title'] = songInfo.title
     this._stateful['song_artist'] = songInfo.artist
     this._duration = player.notechart.duration
   }
@@ -33,7 +34,7 @@ export class GameDisplay {
     let time = (new Date().getTime() - this._started) / 1000
     let data = this._getData(time, gameTime, gameState)
     this._updateStatefulData(time, gameTime, gameState)
-    this._context.render(Object.assign({ }, this._stateful, data))
+    this._context.render(Object.assign({}, this._stateful, data))
     if (this._video && !this._videoStarted && gameTime >= this._videoOffset) {
       this._video.volume = 0
       this._video.play()
@@ -42,11 +43,11 @@ export class GameDisplay {
     }
   }
   _getData (time, gameTime, gameState) {
-    let data = { }
-    data['tutorial']  = this._game.options.tutorial ? 'yes' : 'no'
-    data['t']         = time
-    data['gameTime']  = gameTime
-    data['ready']     = this._getReady(gameState)
+    let data = {}
+    data['tutorial'] = this._game.options.tutorial ? 'yes' : 'no'
+    data['t'] = time
+    data['gameTime'] = gameTime
+    data['ready'] = this._getReady(gameState)
     data['song_time'] = this._getSongTime(gameTime)
     for (let [player, playerDisplay] of this._players) {
       let playerState = gameState.player(player)
@@ -68,8 +69,10 @@ export class GameDisplay {
   }
   _getSongTime (gameTime) {
     return (
-        formatTime(Math.min(this._duration, Math.max(0, gameTime))) +
-        ' / ' + formatTime(this._duration))
+      formatTime(Math.min(this._duration, Math.max(0, gameTime))) +
+      ' / ' +
+      formatTime(this._duration)
+    )
   }
   _getReady (gameState) {
     let f = gameState.readyFraction
@@ -81,14 +84,16 @@ export class GameDisplay {
       .append('<div class="game-display--bg js-back-image"></div>')
       .append(this.view)
     if (backgroundImagePromise) {
-      Promise.resolve(backgroundImagePromise).then(
-        image => $wrapper.find('.js-back-image').append(image)
+      Promise.resolve(backgroundImagePromise).then(image =>
+        $wrapper.find('.js-back-image').append(image)
       )
     }
     if (video) {
       this._video = video.element
       this._videoOffset = video.offset
-      $(video.element).addClass('game-display--video-bg').appendTo($wrapper)
+      $(video.element)
+        .addClass('game-display--video-bg')
+        .appendTo($wrapper)
     }
     return $wrapper[0]
   }

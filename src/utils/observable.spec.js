@@ -1,10 +1,7 @@
-
 import Observable from './observable'
 
 describe('Observable', function () {
-
   describe('stateless mode', function () {
-
     it('should call watchers', function () {
       let s1 = sinon.spy()
       let s2 = sinon.spy()
@@ -23,11 +20,9 @@ describe('Observable', function () {
       expect(s1).not.to.have.been.calledWith('3')
       expect(s2).to.have.been.calledWith('3')
     })
-
   })
 
   describe('stateful mode', function () {
-
     it('should have value', function () {
       let o = new Observable('0')
       expect(o.value).to.equal('0')
@@ -51,7 +46,5 @@ describe('Observable', function () {
       expect(s1).not.to.have.been.calledWith('3')
       expect(s2).to.have.been.calledWith('3')
     })
-
   })
-
 })

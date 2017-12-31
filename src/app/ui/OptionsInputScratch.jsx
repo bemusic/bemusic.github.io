@@ -1,36 +1,38 @@
-
 import './OptionsInputScratch.scss'
 import React from 'react'
-import pure  from 'recompose/pure'
-import c     from 'classnames'
+import c from 'classnames'
 
-export const OptionsInputScratch = React.createClass({
+class OptionsInputScratch extends React.PureComponent {
   render () {
-    return <div
-      className={c('OptionsInputScratch',
-            { 'is-editing': this.props.isEditing })}
-      onClick={this.handleClick}>
-      <svg viewBox="-100 -100 200 200">
-        <path d={star()} className="OptionsInputScratchのstar" />
-      </svg>
-      <div className="OptionsInputScratchのtext">
-        <div className={this.renderKeyClass(0)}>{this.props.text[0]}</div>
-        <div className="OptionsInputScratchのkeySeparator">or</div>
-        <div className={this.renderKeyClass(1)}>{this.props.text[1]}</div>
+    return (
+      <div
+        className={c('OptionsInputScratch', {
+          'is-editing': this.props.isEditing
+        })}
+        onClick={this.handleClick}
+      >
+        <svg viewBox='-100 -100 200 200'>
+          <path d={star()} className='OptionsInputScratchのstar' />
+        </svg>
+        <div className='OptionsInputScratchのtext'>
+          <div className={this.renderKeyClass(0)}>{this.props.text[0]}</div>
+          <div className='OptionsInputScratchのkeySeparator'>or</div>
+          <div className={this.renderKeyClass(1)}>{this.props.text[1]}</div>
+        </div>
       </div>
-    </div>
-  },
+    )
+  }
   renderKeyClass (index) {
     return c('OptionsInputScratchのkey', {
       'is-editing': this.props.editIndex === index
     })
-  },
-  handleClick () {
+  }
+  handleClick = () => {
     this.props.onEdit('SC')
-  },
-})
+  }
+}
 
-export default pure(OptionsInputScratch)
+export default OptionsInputScratch
 
 function star () {
   let out = ''

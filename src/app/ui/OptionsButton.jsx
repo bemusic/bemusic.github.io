@@ -1,11 +1,16 @@
-
 import './OptionsButton.scss'
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default React.createClass({
-  render () {
-    return <button className="OptionsButton" onClick={this.props.onClick}>
-      {this.props.children}
-    </button>
-  }
-})
+const OptionsButton = ({ children, onClick }) => (
+  <button className='OptionsButton' onClick={onClick}>
+    {children}
+  </button>
+)
+
+OptionsButton.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func
+}
+
+export default OptionsButton

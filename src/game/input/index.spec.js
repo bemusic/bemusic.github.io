@@ -1,18 +1,16 @@
-
 import GameInput from './'
 
 describe('GameInput', function () {
-
   let input
   let plugin
 
   beforeEach(function () {
     input = new GameInput()
     plugin = {
-      out: { },
+      out: {},
       get () {
         return this.out
-      },
+      }
     }
     input.use(plugin)
   })
@@ -52,5 +50,4 @@ describe('GameInput', function () {
       expect(input.get('wow').changed).to.equal(true)
     })
   })
-
 })

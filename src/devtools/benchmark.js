@@ -1,4 +1,3 @@
-
 import now from 'bemuse/utils/now'
 import { shouldEnableBenchmark } from './query-flags'
 import React from 'react'
@@ -27,7 +26,7 @@ function Stat () {
     },
     toString () {
       return format(average) + ' / ' + format(secAvg)
-    },
+    }
   }
 }
 
@@ -36,7 +35,7 @@ function format (x) {
 }
 
 function Benchmarker () {
-  var stats = { }
+  var stats = {}
   let bench = {
     enabled: true,
     stats,
@@ -73,9 +72,10 @@ function Benchmarker () {
 function FakeBenchmarker () {
   return {
     enabled: false,
-    wrap: (title, f) => f,
+    wrap: (title, f) => f
   }
 }
 
-export default window.BEMUSE_BENCHMARK =
-    shouldEnableBenchmark() ? new Benchmarker() : new FakeBenchmarker()
+export default (window.BEMUSE_BENCHMARK = shouldEnableBenchmark()
+  ? new Benchmarker()
+  : new FakeBenchmarker())

@@ -1,4 +1,4 @@
-import defaultAudioContext from 'audio-context'
+import defaultAudioContext from 'bemuse/audio-context'
 import readBlob from 'bemuse/utils/read-blob'
 
 export const FADE_LENGTH = 0.001
@@ -17,11 +17,11 @@ export function canPlay (type) {
 // - Playing the `Sample` and managing its lifecycle.
 export class SamplingMaster {
   constructor (audioContext) {
-    this._audioContext  = audioContext || defaultAudioContext
-    this._samples       = []
-    this._groups        = []
-    this._instances     = new Set()
-    this._destination   = this._audioContext.destination
+    this._audioContext = audioContext || defaultAudioContext
+    this._samples = []
+    this._groups = []
+    this._instances = new Set()
+    this._destination = this._audioContext.destination
   }
 
   // Connects a dummy node to the audio, thereby unmuting the audio system on
@@ -54,8 +54,9 @@ export class SamplingMaster {
   // Decodes the audio data from a Blob or an ArrayBuffer.
   // Returns an AudioBuffer which can be re-used in other sampling masters.
   decode (blobOrArrayBuffer) {
-    return this._coerceToArrayBuffer(blobOrArrayBuffer)
-    .then(arrayBuffer => this._decodeAudio(arrayBuffer))
+    return this._coerceToArrayBuffer(blobOrArrayBuffer).then(arrayBuffer =>
+      this._decodeAudio(arrayBuffer)
+    )
   }
 
   // Creates a `Sample` from a Blob or an ArrayBuffer or an AudioBuffer.
@@ -91,12 +92,13 @@ export class SamplingMaster {
 
   _decodeAudio (arrayBuffer) {
     return new Promise((resolve, reject) => {
-      this.audioContext.decodeAudioData(arrayBuffer,
+      this.audioContext.decodeAudioData(
+        arrayBuffer,
         function decodeAudioDataSuccess (audioBuffer) {
           resolve(audioBuffer)
         },
         function decodeAudioDataFailure (e) {
-          reject('Unable to decode audio: ' + e)
+          reject(new Error('Unable to decode audio: ' + e))
         }
       )
     })
@@ -109,13 +111,11 @@ export class SamplingMaster {
   _stoppedPlaying (instance) {
     this._instances.delete(instance)
   }
-
 }
 
 // Sound group
 class SoundGroup {
-
-  constructor (samplingMaster, { volume } = { }) {
+  constructor (samplingMaster, { volume } = {}) {
     this._master = samplingMaster
     this._gain = this._master.audioContext.createGain()
     if (volume != null) this._gain.gain.value = volume
@@ -130,7 +130,6 @@ class SoundGroup {
     this._gain.disconnect()
     this._gain = null
   }
-
 }
 
 // The Sample is created by and belongs to the `SamplingMaster`.
@@ -138,7 +137,6 @@ class SoundGroup {
 // You don't invoke this constructor directly; it is invoked by
 // `SamplingMaster#create`.
 class Sample {
-
   constructor (samplingMaster, audioBuffer) {
     this._master = samplingMaster
     this._buffer = audioBuffer
@@ -154,7 +152,6 @@ class Sample {
     this._master = null
     this._buffer = null
   }
-
 }
 
 // When a `Sample` is played, a PlayInstance is created.
@@ -163,7 +160,7 @@ class Sample {
 //
 // You don't invoke this constructor directly; it is invoked by `Sample#play`.
 class PlayInstance {
-  constructor (samplingMaster, buffer, delay, options = { }) {
+  constructor (samplingMaster, buffer, delay, options = {}) {
     delay = delay || 0
     this._master = samplingMaster
 
@@ -174,11 +171,10 @@ class PlayInstance {
     source.onended = () => this.stop()
     let gain = context.createGain()
     source.connect(gain)
-    let destination = (
+    let destination =
       options.node ||
       (options.group && options.group.destination) ||
       samplingMaster.destination
-    )
     gain.connect(destination)
     this._source = source
     this._gain = this.TEST_node = gain
@@ -200,7 +196,10 @@ class PlayInstance {
     }
     if (fadeIn) {
       gain.gain.setValueAtTime(0, context.currentTime + delay)
-      gain.gain.linearRampToValueAtTime(1, context.currentTime + delay + FADE_LENGTH)
+      gain.gain.linearRampToValueAtTime(
+        1,
+        context.currentTime + delay + FADE_LENGTH
+      )
     }
     if (fadeOutAt !== false) {
       gain.gain.setValueAtTime(1, fadeOutAt)
@@ -225,17 +224,14 @@ class PlayInstance {
   // a note.
   bad () {
     if (!this._source) return
-    this._source.playbackRate.value = (Math.random() < 0.5
-      ? Math.pow(2,  1 / 24)
-      : Math.pow(2, -1 / 24)
-    )
+    this._source.playbackRate.value =
+      Math.random() < 0.5 ? Math.pow(2, 1 / 24) : Math.pow(2, -1 / 24)
   }
 
   // Destroys this PlayInstance.
   destroy () {
     this.stop()
   }
-
 }
 
 export default SamplingMaster

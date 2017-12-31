@@ -1,46 +1,52 @@
-
 import './RankingTable.scss'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { formattedAccuracyForRecord } from 'bemuse/rules/accuracy'
 
-export const RankingTable = React.createClass({
-  render () {
-    return <table className="RankingTable">
-      <tbody>
-        {this.props.children}
-      </tbody>
-    </table>
+const RankingTable = ({ children }) => (
+  <table className='RankingTable'>
+    <tbody>{children}</tbody>
+  </table>
+)
+
+RankingTable.propTypes = {
+  children: PropTypes.any
+}
+
+class Row extends React.Component {
+  static propTypes = {
+    record: PropTypes.object
   }
-})
 
-export const Row = React.createClass({
   render () {
-    return <tr>
-      <td className="RankingTableのrank">
-        {this.props.record.rank || <span title="Unable to determine your rank">??</span>}
-      </td>
-      <td className="RankingTableのname">
-        {this.props.record.playerName}
-      </td>
-      <td className="RankingTableのscore">
-        {this.props.record.score}
-      </td>
-      <td className="RankingTableのaccuracy">
-        {formattedAccuracyForRecord(this.props.record)}
-      </td>
-    </tr>
-  },
-})
+    return (
+      <tr>
+        <td className='RankingTableのrank'>
+          {this.props.record.rank || (
+            <span title='Unable to determine your rank'>??</span>
+          )}
+        </td>
+        <td className='RankingTableのname'>{this.props.record.playerName}</td>
+        <td className='RankingTableのscore'>{this.props.record.score}</td>
+        <td className='RankingTableのaccuracy'>
+          {formattedAccuracyForRecord(this.props.record)}
+        </td>
+      </tr>
+    )
+  }
+}
 
-export const Message = React.createClass({
-  render () {
-    return <tr>
-      <td colSpan={4} className="RankingTableのmessage">
-        {this.props.children}
-      </td>
-    </tr>
-  },
-})
+export const Message = ({ children }) => (
+  <tr>
+    <td colSpan={4} className='RankingTableのmessage'>
+      {children}
+    </td>
+  </tr>
+)
+
+Message.propTypes = {
+  children: PropTypes.any
+}
 
 RankingTable.Row = Row
 RankingTable.Message = Message

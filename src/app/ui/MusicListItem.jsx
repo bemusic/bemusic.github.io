@@ -1,63 +1,62 @@
 import './MusicListItem.scss'
 
-import React  from 'react'
-import c      from 'classnames'
+import React from 'react'
+import c from 'classnames'
 import getPlayableCharts from 'bemuse/music-collection/getPlayableCharts'
-import pure   from 'recompose/pure'
 
 import MusicListItemCharts from './MusicListItemCharts'
 
-export const MusicListItem = React.createClass({
+class MusicListItem extends React.PureComponent {
   render () {
     const song = this.props.song
     const className = c('MusicListItem', {
       'is-active': this.props.selected,
-      'js-active-song': this.props.selected,
+      'js-active-song': this.props.selected
     })
-    return <li
-      className={className}
-      onClick={this.handleClick}>
-      {
-        song.tutorial
-        ? (
-          <div className="MusicListItemのtutorial">
-            <div className="MusicListItemのcharts">
+    return (
+      <li className={className} onClick={this.handleClick}>
+        {song.tutorial ? (
+          <div className='MusicListItemのtutorial'>
+            <div className='MusicListItemのcharts'>
               {this.renderChartlist()}
             </div>
             Tutorial
           </div>
-        )
-        : (
-          <div className="MusicListItemのinfo">
-            <div className="MusicListItemのinfo-top">
-              <div className="MusicListItemのtitle">
+        ) : (
+          <div className='MusicListItemのinfo'>
+            <div className='MusicListItemのinfo-top'>
+              <div className='MusicListItemのtitle'>
                 {this.renderHighlight(song.title)}
               </div>
-              <div className="MusicListItemのcharts">
+              <div className='MusicListItemのcharts'>
                 {this.renderChartlist()}
               </div>
             </div>
-            <div className="MusicListItemのinfo-bottom">
-              <div className="MusicListItemのartist">
+            <div className='MusicListItemのinfo-bottom'>
+              <div className='MusicListItemのartist'>
                 {this.renderHighlight(song.artist)}
               </div>
-              <div className="MusicListItemのgenre">
+              <div className='MusicListItemのgenre'>
                 {this.renderHighlight(song.genre)}
               </div>
             </div>
           </div>
-        )
-      }
-    </li>
-  },
+        )}
+      </li>
+    )
+  }
+
   renderChartlist () {
-    return <MusicListItemCharts
-      charts={getPlayableCharts(this.props.song.charts)}
-      selectedChart={this.props.selectedChart}
-      onChartClick={this.handleChartClick}
-      playMode={this.props.playMode}
-    />
-  },
+    return (
+      <MusicListItemCharts
+        charts={getPlayableCharts(this.props.song.charts)}
+        selectedChart={this.props.selectedChart}
+        onChartClick={this.handleChartClick}
+        playMode={this.props.playMode}
+      />
+    )
+  }
+
   renderHighlight (text) {
     if (!this.props.highlight) return text
     let highlight = this.props.highlight
@@ -70,22 +69,23 @@ export const MusicListItem = React.createClass({
       start += segments[i].length
       if (i !== segments.length - 1) {
         let highlightedText = text.substr(start, highlight.length)
-        output.push(<span
-          className="MusicListItemのhighlight">{highlightedText}</span>)
+        output.push(
+          <span className='MusicListItemのhighlight'>{highlightedText}</span>
+        )
         start += highlight.length
       }
     }
     return output
-  },
+  }
 
-  handleClick () {
+  handleClick = () => {
     this.props.onSelect(this.props.song)
-  },
-  handleChartClick (chart, e) {
+  }
+
+  handleChartClick = (chart, e) => {
     e.stopPropagation()
     this.props.onSelect(this.props.song, chart)
-  },
+  }
+}
 
-})
-
-export default pure(MusicListItem)
+export default MusicListItem

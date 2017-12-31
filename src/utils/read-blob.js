@@ -1,4 +1,3 @@
-
 export default readBlob
 
 // Reads the blob as a specified type. The blob will not actually be read
@@ -20,12 +19,12 @@ export function readBlob (blob) {
           reject(new Error('Unable to read from Blob'))
         }
         switch (type) {
-        case 'arraybuffer':
-          reader.readAsArrayBuffer(blob)
-          break
-        case 'text':
-          reader.readAsText(blob)
-          break
+          case 'arraybuffer':
+            reader.readAsArrayBuffer(blob)
+            break
+          case 'text':
+            reader.readAsText(blob)
+            break
         }
       })
     }

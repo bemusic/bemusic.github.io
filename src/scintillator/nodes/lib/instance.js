@@ -1,15 +1,14 @@
-
 import Callbacks from 'bemuse/utils/callbacks'
 
 export class Instance {
   constructor (options) {
-    this._context   = options.context
-    this._object    = options.object
-    this._children  = options.children
-    this._bindings  = [ ]
-    this._concerns  = [ ]
-    this.onData     = new Callbacks(options.onData)
-    this.onDestroy  = new Callbacks(options.onDestroy)
+    this._context = options.context
+    this._object = options.object
+    this._children = options.children
+    this._bindings = []
+    this._concerns = []
+    this.onData = new Callbacks(options.onData)
+    this.onDestroy = new Callbacks(options.onDestroy)
     if (options.bindings) {
       for (let binding of options.bindings) {
         this.bind(...binding)
@@ -39,7 +38,7 @@ export class Instance {
       // just do it once
       sideEffect(pipeline[0]())
     } else {
-      this._bindings.push((value) => {
+      this._bindings.push(value => {
         for (var i = 0; i < pipeline.length; i++) {
           value = pipeline[i](value)
         }
@@ -48,7 +47,7 @@ export class Instance {
     }
   }
   attachTo (parent) {
-    this._parent    = parent
+    this._parent = parent
     this._parent.addChild(this._object)
   }
   detach () {
@@ -73,10 +72,10 @@ export class Instance {
       this._concerns[i].destroy()
     }
     this.onDestroy.call()
-    this._concerns  = null
-    this._bindings  = null
-    this._parent    = null
-    this._object    = null
+    this._concerns = null
+    this._bindings = null
+    this._parent = null
+    this._object = null
   }
   get object () {
     return this._object

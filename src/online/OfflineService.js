@@ -1,8 +1,6 @@
-
 const no = () => Promise.reject(new Error('Online services not enabled.'))
 
 export class OfflineService {
-
   getCurrentUser () {
     return null
   }
@@ -43,7 +41,6 @@ export class OfflineService {
   retrieveMultipleRecords (items, user) {
     return Promise.reject(new Error('Online services not enabled.'))
   }
-
 }
 
 export default OfflineService

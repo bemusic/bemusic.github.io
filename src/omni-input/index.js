@@ -3,7 +3,6 @@ import _ from 'lodash'
 import Bacon from 'baconjs'
 import getMidi川 from './midi'
 
-
 // Public: OmniInput is a poll-based class that handles the key-pressed state of
 // multiple inputs.
 //
@@ -27,16 +26,16 @@ import getMidi川 from './midi'
 // - `midi.[id].[channel].pitch.down` Pitch bend (down).
 //
 export class OmniInput {
-  constructor (win = window, options = { }) {
+  constructor (win = window, options = {}) {
     const midi川 = (options.getMidi川 || getMidi川)()
     this._window = win
     this._exclusive = !!options.exclusive
     this._disposables = [
       listen(win, 'keydown', e => this._handleKeyDown(e)),
-      listen(win, 'keyup',   e => this._handleKeyUp(e)),
-      midi川.onValue(e => this._handleMIDIMessage(e)),
+      listen(win, 'keyup', e => this._handleKeyUp(e)),
+      midi川.onValue(e => this._handleMIDIMessage(e))
     ]
-    this._status = { }
+    this._status = {}
   }
   _handleKeyDown (e) {
     this._status[`${e.which}`] = true
@@ -48,36 +47,43 @@ export class OmniInput {
   _handleMIDIMessage (e) {
     if (!e || !e.data) return
     const data = e.data
-    const prefix = `midi.${e.target.id}.${e.data[0] & 0x0F}`
-    const handleNote = (state) => {
+    const prefix = `midi.${e.target.id}.${e.data[0] & 0x0f}`
+    const handleNote = state => {
       this._status[`${prefix}.note.${data[1]}`] = state
     }
-    if ((data[0] & 0xF0) === 0x80) { // NoteOff
+    if ((data[0] & 0xf0) === 0x80) {
+      // NoteOff
       handleNote(false)
-    } else if ((data[0] & 0xF0) === 0x90) { // NoteOn
-      if (data[2] > 0x0) { // NoteOn (really)
+    } else if ((data[0] & 0xf0) === 0x90) {
+      // NoteOn
+      if (data[2] > 0x0) {
+        // NoteOn (really)
         handleNote(true)
-      } else { // NoteOff disguised as NoteOn
+      } else {
+        // NoteOff disguised as NoteOn
         handleNote(false)
       }
-    } else if ((data[0] & 0xF0) === 0xB0) { // CC
-      if (data[1] === 0x40) { // Sustain
+    } else if ((data[0] & 0xf0) === 0xb0) {
+      // CC
+      if (data[1] === 0x40) {
+        // Sustain
         this._status[`${prefix}.sustain`] = data[2] >= 64
-      } else if (data[1] === 0x01) { // Modulation
+      } else if (data[1] === 0x01) {
+        // Modulation
         this._status[`${prefix}.mod`] = data[2] >= 16
       }
-    } else if ((data[0] & 0xF0) === 0xE0) { // Pitch Bend
+    } else if ((data[0] & 0xf0) === 0xe0) {
+      // Pitch Bend
       const bend = data[1] | (data[2] << 7)
       this._status[`${prefix}.pitch.up`] = bend >= 0x2100
-      this._status[`${prefix}.pitch.down`] = bend < 0x1F00
+      this._status[`${prefix}.pitch.down`] = bend < 0x1f00
     }
   }
   _updateGamepads () {
     const nav = this._window.navigator
-    const gamepads = (nav.getGamepads
+    const gamepads = nav.getGamepads
       ? nav.getGamepads()
-      : (nav.webkitGetGamepads ? nav.webkitGetGamepads() : [])
-    )
+      : nav.webkitGetGamepads ? nav.webkitGetGamepads() : []
     if (!gamepads) return
     for (let i = 0; i < gamepads.length; i++) {
       const gamepad = gamepads[i]
@@ -109,7 +115,6 @@ export class OmniInput {
   }
 }
 
-
 // Public: Returns a Bacon EventStream of keys pressed.
 //
 export function key川 (input = new OmniInput(), win = window) {
@@ -123,20 +128,16 @@ export function key川 (input = new OmniInput(), win = window) {
   )
 }
 
-
 export function _key川ForUpdate川 (update川) {
-  return (update川
+  return update川
     .map(update => Object.keys(update).filter(key => update[key]))
-    .diff([ ], (previous, current) => _.difference(current, previous))
+    .diff([], (previous, current) => _.difference(current, previous))
     .flatMap(array => Bacon.fromArray(array))
-  )
 }
-
 
 export default OmniInput
 
-
-const knownMidiIds = { }
+const knownMidiIds = {}
 
 export function getName (key) {
   if (+key) {
@@ -145,7 +146,9 @@ export function getName (key) {
   {
     const match = key.match(/^gamepad\.(\d+)\.axis\.(\d+)\.(\w+)/)
     if (match) {
-      return `Joy${match[1]} Axis${match[2]} (${match[3] === 'positive' ? '+' : '-'})`
+      return `Joy${match[1]} Axis${match[2]} (${
+        match[3] === 'positive' ? '+' : '-'
+      })`
     }
   }
   {
@@ -159,13 +162,26 @@ export function getName (key) {
     if (match) {
       const rest = match[3].split('.')
       const id = match[1]
-      const midiDeviceNumber = (
-        knownMidiIds[id] || (knownMidiIds[id] = Object.keys(knownMidiIds).length + 1)
-      )
+      const midiDeviceNumber =
+        knownMidiIds[id] ||
+        (knownMidiIds[id] = Object.keys(knownMidiIds).length + 1)
       const prefix = `MIDI${midiDeviceNumber} Ch${+match[2] + 1}`
       if (rest[0] === 'note') {
         const midiNote = +rest[1]
-        const lookup = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        const lookup = [
+          'C',
+          'C#',
+          'D',
+          'D#',
+          'E',
+          'F',
+          'F#',
+          'G',
+          'G#',
+          'A',
+          'A#',
+          'B'
+        ]
         const noteName = lookup[midiNote % 12]
         const octave = Math.floor(midiNote / 12) - 1
         return `${prefix} ${noteName}${octave}`
@@ -179,7 +195,6 @@ export function getName (key) {
   }
   return `${String(key).replace(/\./g, ' ')}?`
 }
-
 
 function listen (subject, eventName, listener) {
   subject.addEventListener(eventName, listener)

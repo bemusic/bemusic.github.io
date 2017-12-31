@@ -1,8 +1,6 @@
-
 import Progress from './'
 
 describe('Progress', function () {
-
   describe('#watch', function () {
     it('should report current progress when watched', function () {
       let progress = new Progress()
@@ -27,7 +25,7 @@ describe('Progress', function () {
     it('should use a formatter', function () {
       let progress = new Progress()
       progress.report(1, 10)
-      progress.formatter = (p) => p.progress + ''
+      progress.formatter = p => p.progress + ''
       expect(progress.toString()).to.equal('0.1')
     })
   })
@@ -67,5 +65,4 @@ describe('Progress', function () {
       expect(progress.progress).to.equal(null)
     })
   })
-
 })

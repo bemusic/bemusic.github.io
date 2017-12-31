@@ -1,67 +1,83 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import Ranking from './Ranking'
+import online from 'bemuse/online/instance'
 
-import React    from 'react'
-import Ranking  from './Ranking'
-import online   from 'bemuse/online/instance'
+export default class RankingContainer extends React.Component {
+  static propTypes = {
+    chart: PropTypes.object,
+    playMode: PropTypes.any
+  }
 
-export default React.createClass({
-
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       data: null,
       meta: {
         scoreboard: { status: 'loading' },
-        submission: { status: 'loading' },
+        submission: { status: 'loading' }
       }
     }
-  },
+  }
 
   getParams (props) {
-    let params = { }
+    let params = {}
     Object.assign(params, {
-      md5:      props.chart.md5,
-      playMode: props.playMode,
+      md5: props.chart.md5,
+      playMode: props.playMode
     })
     let result = props.result
     if (result) {
       Object.assign(params, {
-        score:    result.score,
-        combo:    result.maxCombo,
-        total:    result.totalCombo,
-        count:    [result['1'], result['2'], result['3'], result['4'], result.missed],
-        log:      result.log,
+        score: result.score,
+        combo: result.maxCombo,
+        total: result.totalCombo,
+        count: [
+          result['1'],
+          result['2'],
+          result['3'],
+          result['4'],
+          result.missed
+        ],
+        log: result.log
       })
     }
     return params
-  },
+  }
 
   componentDidMount () {
-    this.model        = online.Ranking(this.getParams(this.props))
-    this.unsubscribe  = this.model.state川.onValue(this.onStoreTrigger)
-  },
+    this.model = online.Ranking(this.getParams(this.props))
+    this.unsubscribe = this.model.state川.onValue(this.onStoreTrigger)
+    this.mounted = true
+  }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.chart.md5 !== nextProps.chart.md5 || this.props.playMode !== nextProps.playMode) {
+    if (
+      this.props.chart.md5 !== nextProps.chart.md5 ||
+      this.props.playMode !== nextProps.playMode
+    ) {
       if (this.unsubscribe) this.unsubscribe()
-      this.model        = online.Ranking(this.getParams(nextProps))
-      this.unsubscribe  = this.model.state川.onValue(this.onStoreTrigger)
+      this.model = online.Ranking(this.getParams(nextProps))
+      this.unsubscribe = this.model.state川.onValue(this.onStoreTrigger)
     }
-  },
+  }
 
   componentWillUnmount () {
+    this.mounted = false
     if (this.unsubscribe) this.unsubscribe()
-  },
+  }
 
-  onStoreTrigger (state) {
-    if (this.isMounted()) this.setState(state)
-  },
+  onStoreTrigger = state => {
+    if (this.mounted) this.setState(state)
+  }
 
   onReloadScoreboardRequest () {
     this.model.reloadScoreboard()
-  },
+  }
 
   onResubmitScoreRequest () {
     this.model.resubmit()
-  },
+  }
 
   render () {
     return (
@@ -71,5 +87,5 @@ export default React.createClass({
         onResubmitScoreRequest={this.onResubmitScoreRequest}
       />
     )
-  },
-})
+  }
+}

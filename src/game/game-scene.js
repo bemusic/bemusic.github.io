@@ -1,4 +1,3 @@
-
 import $ from 'jquery'
 
 export default function GameScene (display) {
@@ -15,7 +14,6 @@ export default function GameScene (display) {
 }
 
 function showCanvas (display, container) {
-
   var { view, wrapper } = display
   var { width, height } = view
   container.appendChild(wrapper)
@@ -24,10 +22,7 @@ function showCanvas (display, container) {
   $(window).on('resize', resize)
 
   function resize () {
-    var scale = Math.min(
-      window.innerWidth / width,
-      window.innerHeight / height
-    )
+    var scale = Math.min(window.innerWidth / width, window.innerHeight / height)
     view.style.width = Math.round(width * scale) + 'px'
     view.style.height = Math.round(height * scale) + 'px'
     wrapper.style.width = Math.round(width * scale) + 'px'
@@ -37,5 +32,4 @@ function showCanvas (display, container) {
   }
 
   return wrapper
-
 }

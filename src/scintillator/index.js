@@ -1,5 +1,4 @@
-
-import { load }    from './loader'
+import { load } from './loader'
 import { Context } from './context'
 
 export { load, Context }
@@ -11,4 +10,3 @@ export function getSkinUrl () {
     return '/skins/default/skin_screen.xml'
   }
 }
-

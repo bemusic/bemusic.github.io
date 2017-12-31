@@ -1,20 +1,18 @@
-
 import * as Scintillator from 'bemuse/scintillator'
 
 import co from 'co'
 import $ from 'jquery'
 
-import BMS          from 'bms'
-import Game         from 'bemuse/game/game'
-import Notechart    from 'bemuse-notechart'
-import GameState    from 'bemuse/game/state'
-import GameInput    from 'bemuse/game/input'
-import GameDisplay  from 'bemuse/game/display'
-import MAIN         from 'bemuse/utils/main-element'
+import BMS from 'bms'
+import Game from 'bemuse/game/game'
+import Notechart from 'bemuse-notechart'
+import GameState from 'bemuse/game/state'
+import GameInput from 'bemuse/game/input'
+import GameDisplay from 'bemuse/game/display'
+import MAIN from 'bemuse/utils/main-element'
 
 export function main () {
   co(function * () {
-
     let chart = BMS.Compiler.compile(`
       #TITLE ทดสอบ Bemuse
       #ARTIST ฟหกด
@@ -35,33 +33,32 @@ export function main () {
       #00159:0001010000000000
       #00156:0001010000000000`).chart
 
-    let notecharts = [
-      Notechart.fromBMSChart(chart),
-    ]
+    let notecharts = [Notechart.fromBMSChart(chart)]
 
-    let game  = new Game(notecharts, {
+    let game = new Game(notecharts, {
       players: [{ speed: 2 }]
     })
 
-    let skin      = yield Scintillator.load(Scintillator.getSkinUrl())
-    let context   = new Scintillator.Context(skin)
-    let display   = new GameDisplay({ game, skin, context })
-    let state     = new GameState(game)
-    let input     = new GameInput()
+    let skin = yield Scintillator.load(Scintillator.getSkinUrl())
+    let context = new Scintillator.Context(skin)
+    let display = new GameDisplay({ game, skin, context })
+    let state = new GameState(game)
+    let input = new GameInput()
     let started = new Date().getTime()
-    let timer     = {
+    let timer = {
       started: true,
       startTime: started,
-      readyFraction: 0,
+      readyFraction: 0
     }
 
     display.start()
-    display._getData = (getData => function () {
-      let result = getData.apply(display, arguments)
-      result['p1_score'] = (new Date().getTime() - started) % 555556
-      console.log(result)
-      return result
-    })(display._getData)
+    display._getData = (getData =>
+      function () {
+        let result = getData.apply(display, arguments)
+        result['p1_score'] = (new Date().getTime() - started) % 555556
+        console.log(result)
+        return result
+      })(display._getData)
     let draw = () => {
       let t = (new Date().getTime() - started) / 1000
       timer.time = t
@@ -74,13 +71,10 @@ export function main () {
       requestAnimationFrame(f)
     })
     showCanvas(context.view)
-  })
-  .done()
-
+  }).done()
 }
 
 function showCanvas (view) {
-
   var { width, height } = view
 
   view.style.display = 'block'
@@ -91,12 +85,8 @@ function showCanvas (view) {
   $(window).on('resize', resize)
 
   function resize () {
-    var scale = Math.min(
-      window.innerWidth / width,
-      window.innerHeight / height
-    )
+    var scale = Math.min(window.innerWidth / width, window.innerHeight / height)
     view.style.width = Math.round(width * scale) + 'px'
     view.style.height = Math.round(height * scale) + 'px'
   }
-
 }

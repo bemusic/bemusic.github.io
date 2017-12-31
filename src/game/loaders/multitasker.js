@@ -1,19 +1,19 @@
-import Observable   from 'bemuse/utils/observable'
-import Progress     from 'bemuse/progress'
+import Observable from 'bemuse/utils/observable'
+import Progress from 'bemuse/progress'
 import { throttle } from 'lodash'
 
 export function start (callback) {
-
-  let tasks = { }
-  let running = { }
-  let taskList = [ ]
+  let tasks = {}
+  let running = {}
+  let taskList = []
 
   function task (name, text, dependencies, f) {
     let progress = new Progress()
     if (text) taskList.push({ text, progress })
     tasks[name] = function () {
       return Promise.all(dependencies.map(run)).then(deps =>
-        f(...deps.concat([progress])))
+        f(...deps.concat([progress]))
+      )
     }
   }
 
@@ -30,9 +30,9 @@ export function start (callback) {
   function getTaskStatuses () {
     return taskList.map(t => {
       return {
-        text:         t.text,
-        progress:     t.progress.progress,
-        progressText: t.progress.toString(),
+        text: t.text,
+        progress: t.progress.progress,
+        progressText: t.progress.toString()
       }
     })
   }
@@ -48,5 +48,4 @@ export function start (callback) {
   }
 
   return { tasks: status, promise: promise, get: run }
-
 }

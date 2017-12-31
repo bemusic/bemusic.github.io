@@ -1,28 +1,36 @@
-
 import './MusicList.scss'
 
-import React          from 'react'
-import _              from 'lodash'
-import MusicListItem  from './MusicListItem.jsx'
-import pure           from 'recompose/pure'
+import React from 'react'
+import _ from 'lodash'
+import MusicListItem from './MusicListItem.jsx'
 
-export const MusicList = React.createClass({
+class MusicList extends React.PureComponent {
   render () {
-    return <ul className="MusicList js-scrollable-view"
-      onTouchStart={this.props.onTouch}>
-      {this.props.groups.map(({ title, songs }) => [
-        <li className="MusicListのgroupTitle">{title}</li>,
-        songs.map(song => <MusicListItem
-          key={song.id}
-          song={song}
-          selected={song.id === this.props.selectedSong.id}
-          selectedChart={this.getSelectedChart(song)}
-          playMode={this.props.playMode}
-          onSelect={this.props.onSelect}
-          highlight={this.props.highlight} />),
-      ])}
-    </ul>
-  },
+    return (
+      <ul
+        className='MusicList js-scrollable-view'
+        onTouchStart={this.props.onTouch}
+      >
+        {this.props.groups.map(({ title, songs }) => [
+          <li key={title} className='MusicListのgroupTitle'>
+            {title}
+          </li>,
+          songs.map(song => (
+            <MusicListItem
+              key={song.id}
+              song={song}
+              selected={song.id === this.props.selectedSong.id}
+              selectedChart={this.getSelectedChart(song)}
+              playMode={this.props.playMode}
+              onSelect={this.props.onSelect}
+              highlight={this.props.highlight}
+            />
+          ))
+        ])}
+      </ul>
+    )
+  }
+
   getSelectedChart (song) {
     // Performance issue:
     //
@@ -36,6 +44,6 @@ export const MusicList = React.createClass({
     let selectedChart = this.props.selectedChart
     return _.find(song.charts, chart => chart === selectedChart)
   }
-})
+}
 
-export default pure(MusicList)
+export default MusicList

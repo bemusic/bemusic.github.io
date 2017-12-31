@@ -1,24 +1,22 @@
-
 import './OptionsCheckbox.scss'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const OptionsCheckbox = ({ checked, children, onToggle }) => {
   return (
-    <span className="OptionsCheckbox">
+    <span className='OptionsCheckbox'>
       <label>
-        <input type="checkbox" checked={checked} onChange={onToggle} />
-        <span className="OptionosCheckboxのレーベル">
-          {' '}{children}
-        </span>
+        <input type='checkbox' checked={checked} onChange={onToggle} />
+        <span className='OptionosCheckboxのレーベル'> {children}</span>
       </label>
     </span>
   )
 }
 
 OptionsCheckbox.propTypes = {
-  checked: React.PropTypes.bool,
-  children: React.PropTypes.node,
-  onToggle: React.PropTypes.func
+  checked: PropTypes.bool,
+  children: PropTypes.node,
+  onToggle: PropTypes.func
 }
 
 export default OptionsCheckbox

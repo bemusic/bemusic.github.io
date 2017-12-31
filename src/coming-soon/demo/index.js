@@ -1,23 +1,22 @@
-
-import $ from 'jquery'
-import co from 'co'
-
-import SamplingMaster from 'bemuse/sampling-master'
-import DndResources   from 'bemuse/resources/dnd-resources'
-import ctx            from 'audio-context'
-
-import Reader   from 'bms/reader'
-import Compiler from 'bms/compiler'
-import Timing   from 'bms/timing'
-import Notes    from 'bms/notes'
-import SongInfo from 'bms/song-info'
-
-import template from './template.jade'
 import './style.scss'
 
-export function main (element) {
+import $ from 'jquery'
+import Compiler from 'bms/compiler'
+import DndResources from 'bemuse/resources/dnd-resources'
+import Notes from 'bms/notes'
+import Reader from 'bms/reader'
+import SamplingMaster from 'bemuse/sampling-master'
+import SongInfo from 'bms/song-info'
+import Timing from 'bms/timing'
+import co from 'co'
+import ctx from 'bemuse/audio-context'
 
-  $(element).text('Technical Demo!').on('click', handler)
+import template from './template.jade'
+
+export function main (element) {
+  $(element)
+    .text('Technical Demo!')
+    .on('click', handler)
 
   function handler () {
     ui()
@@ -29,24 +28,20 @@ export function main (element) {
   function ui () {
     var el = $(template()).appendTo('body')
     el.find('.js-play').hide()
-    el
-    .on('dragover', () => false)
-    .on('drop', e => {
+    el.on('dragover', () => false).on('drop', e => {
       e.preventDefault()
       let dndLoader = new DndResources(e.originalEvent)
       go(dndLoader, el)
       return false
     })
   }
-
 }
 
 function go (loader, element) {
-
-  let master    = new SamplingMaster(ctx)
-  let $log      = element.find('.js-log')
-  let $play     = element.find('.js-play').hide()
-  let $sampler  = element.find('.js-sampler')
+  let master = new SamplingMaster(ctx)
+  let $log = element.find('.js-log')
+  let $play = element.find('.js-play').hide()
+  let $sampler = element.find('.js-sampler')
 
   co(function * () {
     log('Loading file list')
@@ -55,13 +50,15 @@ function go (loader, element) {
     log('Loading ' + bmsFile)
 
     let arraybuffer = yield (yield loader.file(bmsFile)).read()
-    let buffer = new Buffer(new Uint8Array(arraybuffer))
+    let buffer = Buffer.from(new Uint8Array(arraybuffer))
     let text = yield Promise.promisify(Reader.readAsync)(buffer)
     let chart = Compiler.compile(text).chart
     var timing = Timing.fromBMSChart(chart)
     var notes = Notes.fromBMSChart(chart)
     var info = SongInfo.fromBMSChart(chart)
-    $('<pre wrap></pre>').text(JSON.stringify(info, null, 2)).appendTo($sampler)
+    $('<pre wrap></pre>')
+      .text(JSON.stringify(info, null, 2))
+      .appendTo($sampler)
     log('Loading samples')
     var samples = yield loadSamples(notes, chart)
     log('Click the button to play!')
@@ -76,8 +73,8 @@ function go (loader, element) {
             return
           }
           let span = $('<span></span>')
-                .text('[' + note.keysound + '] ')
-                .appendTo($sampler)
+            .text('[' + note.keysound + '] ')
+            .appendTo($sampler)
           let instance = sample.play()
           $sampler[0].scrollTop = $sampler[0].scrollHeight
           instance.onstop = function () {
@@ -117,8 +114,11 @@ function go (loader, element) {
             .then(blob => master.sample(blob))
             .then(sample => (samples[keysound] = sample))
             .catch(e => console.error('Unable to load ' + keysound + ': ' + e))
-            .tap(() => log('[loaded ' + (++completed) + '/' + promises.length +
-              ' samples]'))
+            .tap(() =>
+              log(
+                '[loaded ' + ++completed + '/' + promises.length + ' samples]'
+              )
+            )
         )
       }
     }
@@ -128,11 +128,11 @@ function go (loader, element) {
 
   function loadKeysound (name) {
     if (typeof name !== 'string') return Promise.reject(new Error('Empty name'))
-    return loader.file(name)
+    return loader
+      .file(name)
       .catch(() => loader.file(name.replace(/\.\w+$/, '.ogg')))
       .catch(() => loader.file(name.replace(/\.\w+$/, '.mp3')))
       .catch(() => loader.file(name.replace(/\.\w+$/, '.wav')))
       .then(file => file.read())
   }
-
 }
