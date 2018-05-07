@@ -1,10 +1,9 @@
-import Worker from 'worker-loader?name=song-loader/[hash].worker.js!./worker.js'
+import Worker from './song-loader.worker.js'
 
 /* eslint import/no-webpack-loader-syntax: off */
 
 export function loadSongFromResources (resources, options = {}) {
   var onMessage = options.onMessage || (() => {})
-  onMessage('Examining dropped items...')
   return resources.fileList
     .then(fileList => {
       return fileList.filter(filename =>
@@ -14,9 +13,15 @@ export function loadSongFromResources (resources, options = {}) {
     .then(bmsFileList => {
       onMessage(bmsFileList.length + ' file(s) found. Reading them...')
       return Promise.map(bmsFileList, filename => {
+        const start = Date.now()
         return resources
           .file(filename)
           .then(file => file.read())
+          .then(x => {
+            const elapsed = Date.now() - start
+            if (elapsed > 1000) onMessage('Read: ' + filename)
+            return x
+          })
           .then(arrayBuffer => ({
             name: filename,
             data: arrayBuffer
