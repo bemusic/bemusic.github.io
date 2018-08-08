@@ -1,79 +1,63 @@
-<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Scoring and Judgment · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Scoring and Judgment · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="The scoring system and judgment system in Bemuse focuses on both"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png"/><h2 class="headerTitle">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/en/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Users</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/gameplay.html">Gameplay</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup navGroupActive"><h3>Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Scoring and Judgment · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Scoring and Judgment · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="The scoring system and judgment system in Bemuse focuses on both accuracy and combo."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/en/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Users</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup navGroupActive"><h3>Creators</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup navGroupActive"><h3>Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
           var toggler = document.getElementById('navToggler');
           var nav = document.getElementById('docsNav');
           toggler.onclick = function() {
             nav.classList.toggle('docsSliderActive');
           };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Scoring and Judgment</h1></header><article><div><span><p>The scoring system and judgment system in Bemuse focuses on both
-accuracy and combo.</p>
-<h2><a class="anchor" aria-hidden="true" id="judgment"></a><a href="#judgment" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Judgment</h2>
-<p>When hitting the note, the accuracy of your button press will be judged
-according to this table:</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Scoring and Judgment</h1></header><article><div><span><p>The scoring system and judgment system in Bemuse focuses on both accuracy and combo.</p>
+<h2><a class="anchor" aria-hidden="true" id="judgment"></a><a href="#judgment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Judgment</h2>
+<p>When hitting the note, the accuracy of your button press will be judged according to this table:</p>
 <table>
 <thead>
-<tr><th style="text-align:center">Name</th><th style="text-align:right">Maximum Offset (ms)</th><th style="text-align:right">Accuracy Score</th></tr>
+<tr><th>Judgment</th><th style="text-align:right">Normal</th><th style="text-align:right">Level5</th><th style="text-align:right">Level4</th><th style="text-align:right">Level3</th><th style="text-align:right">Beginner</th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align:center">METICULOUS!</td><td style="text-align:right">20</td><td style="text-align:right">100%</td></tr>
-<tr><td style="text-align:center">PRECISE!</td><td style="text-align:right">50</td><td style="text-align:right">80%</td></tr>
-<tr><td style="text-align:center">GOOD!</td><td style="text-align:right">100</td><td style="text-align:right">50%</td></tr>
-<tr><td style="text-align:center">OFFBEAT!</td><td style="text-align:right">200</td><td style="text-align:right">0%</td></tr>
-<tr><td style="text-align:center">MISSED!</td><td style="text-align:right">--</td><td style="text-align:right">0%</td></tr>
+<tr><td>Meticulous</td><td style="text-align:right">20ms</td><td style="text-align:right">21ms</td><td style="text-align:right">22ms</td><td style="text-align:right">23ms</td><td style="text-align:right">24ms</td></tr>
+<tr><td>Precise</td><td style="text-align:right">50ms</td><td style="text-align:right">60ms</td><td style="text-align:right">70ms</td><td style="text-align:right">80ms</td><td style="text-align:right">100ms</td></tr>
+<tr><td>Good</td><td style="text-align:right">100ms</td><td style="text-align:right">120ms</td><td style="text-align:right">140ms</td><td style="text-align:right">160ms</td><td style="text-align:right">180ms</td></tr>
+<tr><td>Offbeat</td><td style="text-align:right">200ms</td><td style="text-align:right">200ms</td><td style="text-align:right">200ms</td><td style="text-align:right">200ms</td><td style="text-align:right">200ms</td></tr>
 </tbody>
 </table>
-<div class="srcref admonition">
-<p class="first admonition-title">Source code reference</p>
-<ul class="last simple">
-<li>Defined at <a class="reference external" href="https://github.com/bemusic/bemuse/blob/bf96099/src/game/judgments.js#L7-14">src/game/judgments.js:7-14</a> (judgment timegate)</li>
-<li>Defined at <a class="reference external" href="https://github.com/bemusic/bemuse/blob/bf96099/src/game/judgments.js#L51-58">src/game/judgments.js:51-58</a> (judgment weight)</li>
-</ul>
-</div>
-<h2><a class="anchor" aria-hidden="true" id="scoring"></a><a href="#scoring" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scoring</h2>
-<p>The player's score is calculated from this formula:</p>
-<div class="math">
-  \[\begin{split}\text{score} &amp;= 500000 \times \text{accuracy}
-    + 55555 \times \text{combo bonus} \\[10pt]
-  \text{accuracy} &amp;= \frac{
-    \sum\text{accuracy score}
-  }{\sum\text{total combos}} \\[10pt]
-  \text{combo bonus} &amp;= \frac{
-    \sum_{c \in \text{combos}}{\text{combo level}(c)}
-  }{\sum_{i = 1}^{\text{total combos}}{\text{combo level}(i)}} \\[10pt]
-  \text{combo level}(c) &amp;= \begin{cases}
-    0 &amp; c = 0 \\
-    1 &amp; 1 \leq c \leq 22 \\
-    2 &amp; 23 \leq c \leq 50 \\
-    3 &amp; 51 \leq c \leq 91 \\
-    4 &amp; 92 \leq c \leq 160 \\
-    6 &amp; 161 \leq c
-  \end{cases}\end{split}\]
-</div>
-<p>Here's how the combo level formula comes from. Let's assume, for
-simplicity, a player with 99% hit rate, regardless of difficulty. The
-probability that the player will attain \(c\) combos is \(0.99^c\).</p>
-<p>Now we have 6 combo levels. The probability that the player will attain
-that level gradually decreases. Therefore, the minimum combo is
-\(\left\lceil\log_{0.99} p\right\rceil\).</p>
+<p>The different timegates are designed to make the game easier for beginners, with a gradual increase in difficulty the harder the song gets. They are divided as follows:</p>
 <table>
 <thead>
-<tr><th style="text-align:right">Combo Level</th><th style="text-align:right">Max. Probability</th><th style="text-align:right">Min. Combo</th></tr>
+<tr><th>Timegate</th><th style="text-align:right">Song Level</th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align:right">1</td><td style="text-align:right">100%</td><td style="text-align:right">1</td></tr>
-<tr><td style="text-align:right">2</td><td style="text-align:right">80%</td><td style="text-align:right">23</td></tr>
-<tr><td style="text-align:right">3</td><td style="text-align:right">60%</td><td style="text-align:right">51</td></tr>
-<tr><td style="text-align:right">4</td><td style="text-align:right">40%</td><td style="text-align:right">92</td></tr>
-<tr><td style="text-align:right">5</td><td style="text-align:right">20%</td><td style="text-align:right">161</td></tr>
+<tr><td>Beginner</td><td style="text-align:right">1-2</td></tr>
+<tr><td>Level3</td><td style="text-align:right">3</td></tr>
+<tr><td>Level4</td><td style="text-align:right">4</td></tr>
+<tr><td>Level5</td><td style="text-align:right">5</td></tr>
+<tr><td>Normal</td><td style="text-align:right">6+</td></tr>
 </tbody>
 </table>
-<div class="srcref outdated admonition">
-<p class="first admonition-title">Source code reference</p>
-<ul class="last simple">
-<li class="outdated">Defined at <a class="reference external" href="https://github.com/bemusic/bemuse/blob/bf96099/src/game/state/player-stats.js#L27-29">src/game/state/player-stats.js:27-29</a> (score) [outdated: 17be8477]</li>
-<li>Defined at <a class="reference external" href="https://github.com/bemusic/bemuse/blob/bf96099/src/game/state/player-stats.js#L99-106">src/game/state/player-stats.js:99-106</a> (combo)</li>
+<p>The final score is split into 2 parts:</p>
+<ul>
+<li>500000 for accuracy</li>
+<li>55555 for combo bonus</li>
 </ul>
-</div>
-<h1><a class="anchor" aria-hidden="true" id="grading"></a><a href="#grading" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Grading</h1>
+<p>Each combo has an associated score.</p>
+<table>
+<thead>
+<tr><th style="text-align:right">Combo number</th><th style="text-align:right">Combo score</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:right">0</td><td style="text-align:right">0</td></tr>
+<tr><td style="text-align:right">1–22</td><td style="text-align:right">1</td></tr>
+<tr><td style="text-align:right">23-50</td><td style="text-align:right">2</td></tr>
+<tr><td style="text-align:right">51-91</td><td style="text-align:right">3</td></tr>
+<tr><td style="text-align:right">92–160</td><td style="text-align:right">4</td></tr>
+<tr><td style="text-align:right">161~∞</td><td style="text-align:right">5</td></tr>
+</tbody>
+</table>
+<p>Combo bonus is the sum of combo score for each hit, divided by maximum possible value, times 55555.</p>
+<p><strong>Example:</strong> There are 100 notes. 60 notes have been hit, I missed a note, and hit 39 other notes.</p>
+<ul>
+<li>Obtained combo score = 108 for first 60 notes + 56 for 39 other notes = <code>164</code></li>
+<li>Maximum possible combo score = <code>237</code></li>
+<li>Combo bonus = <code>164 / 237 * 55555 = 38443</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="grading"></a><a href="#grading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Grading</h2>
 <p>After playing the game, the grade is calculated according to this table:</p>
 <table>
 <thead>
@@ -88,10 +72,9 @@ that level gradually decreases. Therefore, the minimum combo is
 <tr><td>S</td><td style="text-align:right">500000</td></tr>
 </tbody>
 </table>
-<div class="srcref admonition">
-<p class="first admonition-title">Source code reference</p>
-<ul class="last simple">
-<li>Defined at <a class="reference external" href="https://github.com/bemusic/bemuse/blob/bf96099/src/rules/grade.js#L2-12">src/rules/grade.js:2-12</a> (grade)</li>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li>The original <a href="https://github.com/bemusic/bemuse/pull/446">pull request</a> implementing the scoring system.</li>
+<li><a href="https://qiita.com/dtinth/items/5b9f6b876a0a777eec50">Essay by @dtinth</a> regarding the new timegates &amp; scoring.</li>
 </ul>
-</div>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="gameplay.html">← Gameplay</a><a class="docs-next button" href="music-server.html">How to Host a Music Server →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="user-guide.html">← User Guide</a><a class="docs-next button" href="faq.html">FAQ →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>
