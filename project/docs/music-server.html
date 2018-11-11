@@ -1,15 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>How to Host a Music Server · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="How to Host a Music Server · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="&lt;div class=&quot;admonition warning&quot;&gt;"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/en/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Creators</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup navGroupActive"><h3>Creators</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup navGroupActive"><h3>Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
-          var toggler = document.getElementById('navToggler');
-          var nav = document.getElementById('docsNav');
-          toggler.onclick = function() {
-            nav.classList.toggle('docsSliderActive');
-          };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>How to Host a Music Server</h1></header><article><div><span><div class="admonition warning">
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>How to Host a Music Server · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;div class=&quot;admonition warning&quot;&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="How to Host a Music Server · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="&lt;div class=&quot;admonition warning&quot;&gt;"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Creators</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Creators</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">How to Host a Music Server</h1></header><article><div><span><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This section is under construction.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Linux is not officially supported for creating Bemuse packages,</strong> as it relies on Apple's AAC codec. You can still host the server files on any Linux machine, though.</p>
+</div>
 <p>Bemuse comes with a default music server to help new players get started. This default music server contains a selection of songs that I think are really nice. You can also run your own music server and play it in Bemuse. This page describes how you can do it.</p>
-<p>This guide is valid for all major operating systems (Windows, Linux, or macOS), and assumes some knowledge about using the command line and web hosting.</p>
+<p>This guide is valid for Windows or macOS, and assumes some knowledge about using the command line and web hosting.</p>
 <h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
 <h3><a class="anchor" aria-hidden="true" id="macos"></a><a href="#macos" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>macOS</h3>
 <ul>
@@ -20,12 +45,12 @@
 <h4><a class="anchor" aria-hidden="true" id="prerequisite-check"></a><a href="#prerequisite-check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisite Check</h4>
 <p>Run these commands inside the Terminal.</p>
 <p><strong>Node.js</strong>: You should see the version number:</p>
-<pre><code class="hljs css bash">$ node -v
-<span class="hljs-comment"># v9.8.0</span>
+<pre><code class="hljs css language-sh-session">$ <span class="hljs-keyword">node</span> <span class="hljs-title">-v</span>
+v10.<span class="hljs-number">11.0</span>
 </code></pre>
 <p><strong>SoX</strong>: You should see the SoX version:</p>
-<pre><code class="hljs css bash">$ sox --version
-<span class="hljs-comment"># sox:      SoX v14.4.2</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> sox --version</span>
+sox:      SoX v14.4.2
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -72,24 +97,48 @@
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="prerequisite-check-1"></a><a href="#prerequisite-check-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisite Check</h4>
 <p>Open <strong>PowerShell</strong> (or Command Prompt) and add the PATH variable:</p>
-<pre><code class="hljs css powershell">PS&gt; <span class="hljs-variable">$env:Path</span> += <span class="hljs-string">";C:\Bemuse\vendor\bin"</span>
+<pre><code class="hljs css language-powershell">PS&gt; <span class="hljs-variable">$env:Path</span> += <span class="hljs-string">";C:\Bemuse\vendor\bin"</span>
 </code></pre>
 <p><strong>Node.js</strong>: You should see the version number:</p>
-<pre><code class="hljs css powershell">PS&gt; node -v
+<pre><code class="hljs css language-powershell">PS&gt; node -v
 <span class="hljs-comment"># v9.8.0</span>
 </code></pre>
 <p><strong>SoX</strong>: You should see the version number:</p>
-<pre><code class="hljs css powershell">PS&gt; sox --version
+<pre><code class="hljs css language-powershell">PS&gt; sox --version
 <span class="hljs-comment"># C:\Bemuse\vendor\bin\sox.exe:      SoX v14.4.2</span>
 </code></pre>
 <p><strong>qaac</strong>: You should see the help text:</p>
-<pre><code class="hljs css powershell">PS&gt; qaac
+<pre><code class="hljs css language-powershell">PS&gt; qaac
 <span class="hljs-comment"># qaac 2.47</span>
 <span class="hljs-comment"># Usage: qaac [options] infiles....</span>
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># ...</span>
 <span class="hljs-comment"># ...</span>
 <span class="hljs-comment"># ...</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debian-linux-debian-ubuntu-etc"></a><a href="#debian-linux-debian-ubuntu-etc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debian Linux (Debian, Ubuntu etc.)</h3>
+<ul>
+<li><a href="https://nodejs.org/">Node.js</a>: <a href="https://github.com/nodesource/distributions/blob/master/README.md">Here</a> is the installation guide from nodejs.</li>
+<li><a href="http://sox.sourceforge.net/">SoX</a>: <code>sudo apt install sox</code></li>
+</ul>
+<p>If you got error when convert sound, install <code>libsox-dev</code> package too.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    <b>Linux is not support M4A conversion because of Apple's AAC codec.</b>
+    <br />
+    If you build bemuse custom server via linux, Apple device can't play the music.
+</p>
+</div>
+<h4><a class="anchor" aria-hidden="true" id="prerequisite-check-2"></a><a href="#prerequisite-check-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisite Check</h4>
+<p>Run these commands inside the Terminal.</p>
+<p><strong>Node.js</strong>: You should see the version number:</p>
+<pre><code class="hljs css language-sh-session">$ <span class="hljs-keyword">node</span> <span class="hljs-title">-v</span>
+v11.<span class="hljs-number">1.0</span>
+</code></pre>
+<p><strong>SoX</strong>: You should see the SoX version:</p>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> sox --version</span>
+sox:      SoX v14.4.2
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="a-music-server"></a><a href="#a-music-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Music Server</h2>
 <p>A music server is simply a web server that hosts the files in a specific
@@ -117,11 +166,14 @@ data. A Bemuse music server has the following structure:</p>
 <p>The Bemuse assets package is also generated using the Bemuse tools, which we will cover in the next section.</p>
 <h2><a class="anchor" aria-hidden="true" id="install-bemuse-tools"></a><a href="#install-bemuse-tools" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install Bemuse Tools</h2>
 <p>Bemuse Tools is a command line application to help you generate files for Bemuse music server. Install it using the <strong>npm</strong> command, which comes with Node.js:</p>
-<pre><code class="hljs css powershell">PS&gt; npm install -g bemuse-tools
+<pre><code class="hljs css language-powershell">PS&gt; npm install -g bemuse-tools
+</code></pre>
+<p>or if you use yarn:</p>
+<pre><code class="hljs css language-bash">$ yarn global add bemuse-tools
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="installation-check"></a><a href="#installation-check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation Check</h3>
 <p>Run the following command:</p>
-<pre><code class="hljs css powershell">PS&gt; bemuse-tools
+<pre><code class="hljs css language-powershell">PS&gt; bemuse-tools
 </code></pre>
 <p>It should display the version:</p>
 <pre><code class="hljs">This is bemuse-tools v1.1.0-beta.1
@@ -132,6 +184,10 @@ data. A Bemuse music server has the following structure:</p>
   pack &lt;path&gt; — Packs sounds and BGAs into assets folder
   server &lt;path&gt; — Serves a Bemuse server (no indexing or conversion)
 </code></pre>
+<p>If you installed bemuse-tools from yarn and get <code>command not found</code> error, you have to export path.</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">export</span> PATH=~/.yarn/bin:<span class="hljs-variable">${PATH}</span>
+</code></pre>
+<p>and run once again for installation check.</p>
 <h2><a class="anchor" aria-hidden="true" id="creating-your-server-folder"></a><a href="#creating-your-server-folder" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Your Server Folder</h2>
 <p>Extract your BMS files into a folder. One song per folder. For example:</p>
 <pre><code class="hljs">C:
@@ -158,10 +214,10 @@ data. A Bemuse music server has the following structure:</p>
 <p>It's not practical to extract <code>.rar</code> or <code>.zip</code> files in the browser. It's also not practical to download hundreds of small files (very slow).</p>
 <p>In Bemuse, keysounds are packed into <code>.bemuse</code> format. They are split into many parts. Each part is about 1.4mb.</p>
 <p>Inside Terminal or Powershell, <code>cd</code> to the server folder:</p>
-<pre><code class="hljs css powershell">PS&gt; cd C:\Bemuse\myserver
+<pre><code class="hljs css language-powershell">PS&gt; cd C:\Bemuse\myserver
 </code></pre>
 <p>Then invoke <code>bemuse-tools pack</code> with the folder you want to pack:</p>
-<pre><code class="hljs css powershell">PS&gt; bemuse-tools pack <span class="hljs-string">'Lapis - SHIKI'</span>
+<pre><code class="hljs css language-powershell">PS&gt; bemuse-tools pack <span class="hljs-string">'Lapis - SHIKI'</span>
 <span class="hljs-comment"># -&gt; Loading audios</span>
 <span class="hljs-comment"># -&gt; Loading movies</span>
 <span class="hljs-comment"># -&gt; Loading and converting images</span>
@@ -179,6 +235,13 @@ data. A Bemuse music server has the following structure:</p>
 <span class="hljs-comment"># ...</span>
 <span class="hljs-comment"># Written metadata.json</span>
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    If you pack bms files from <b>linux</b>, <code>-> Converting audio to m4a [for iOS and Safari]</code> will get errors because of codec. Converted pack will not play sounds on Apple platform devices.
+</p>
+</div>
+<h3><a class="anchor" aria-hidden="true" id="note"></a><a href="#note" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Note</h3>
 <p>Now if you look at your song folder, you should see a new folder called <strong>assets</strong>:</p>
 <pre><code class="hljs">Lapis - SHIKI
 ├── assets
@@ -208,7 +271,7 @@ data. A Bemuse music server has the following structure:</p>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="creating-index-file"></a><a href="#creating-index-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Index File</h2>
 <p>Now, the client needs to know what songs are available in the server. You need to create an index file. You can do it by running this command in the server folder:</p>
-<pre><code class="hljs css powershell">PS&gt; bemuse-tools index
+<pre><code class="hljs css language-powershell">PS&gt; bemuse-tools index
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Absurd Gaff - siromaru       160bpm [schranz] siromaru / BMSSP-Absurd Gaff 3 6 8 10 10 21 [no-meta]</span>
 <span class="hljs-comment"># ametsuchi - stereoberry      122bpm [discopunk / shoegazer] stereoberry / BMSSP-ametsuchi 1 3 5 5 8 [no-meta]</span>
@@ -229,13 +292,11 @@ data. A Bemuse music server has the following structure:</p>
 └── index.json
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="hosting"></a><a href="#hosting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hosting</h2>
-<h3><a class="anchor" aria-hidden="true" id="on-dropbox"></a><a href="#on-dropbox" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>On Dropbox</h3>
-<p>TODO</p>
 <h3><a class="anchor" aria-hidden="true" id="on-a-web-server"></a><a href="#on-a-web-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>On a Web Server</h3>
 <p>Upload <code>index.json</code>, all <code>*.bemuse</code> and <code>*.bms/bme/bml</code> files to a web server. Make sure the directory layout is the same. <a href="http://enable-cors.org/">Enable cross-origin resource sharing</a> on your web server to allow Bemuse client to connect.</p>
 <p>To connect to the music server, go to <code>http://bemuse.ninja/?server=&lt;your URL&gt;</code>.</p>
 <p>Example: <a href="http://bemuse.ninja/?server=http://flicknote.bemuse.ninja/bemuse/mumei12">http://bemuse.ninja/?server=http://flicknote.bemuse.ninja/bemuse/mumei12</a></p>
-<h3><a class="anchor" aria-hidden="true" id="on-a-local-machine"></a><a href="#on-a-local-machine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>On a Local Machine</h3>
+<h3><a class="anchor" aria-hidden="true" id="on-a-local-machine-windows-xampp"></a><a href="#on-a-local-machine-windows-xampp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>On a Local Machine (Windows, XAMPP)</h3>
 <p>Navigate to your Apache Config folder of XAMPP (e.g. <code>C:\xampp\apache\conf</code>) and open <code>httpd.conf</code></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -264,4 +325,86 @@ data. A Bemuse music server has the following structure:</p>
 </code></pre>
 <p>Once the file is saved, open your XAMPP Control Pannel and run &quot;Apache&quot;.</p>
 <p>Then connect to the music server with (<a href="http://bemuse.ninja/?server=https://localhost/">http://bemuse.ninja/?server=https://localhost/</a>).</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="faq.html">← FAQ</a><a class="docs-next button" href="bms-support.html">BMS Support in Bemuse →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>
+<h3><a class="anchor" aria-hidden="true" id="on-a-local-machine-macos-nginx-https-nginxorg-en"></a><a href="#on-a-local-machine-macos-nginx-https-nginxorg-en" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>On a Local Machine (macOS, <a href="https://nginx.org/en/">nginx</a>)</h3>
+<p>First, open a Terminal and <code>cd</code> into the folder that contains the Bemuse server (there should be an <code>index.json</code> file in that folder).</p>
+<p>Then, install nginx:</p>
+<pre><code class="hljs css language-bash">$ brew install nginx
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    Homebrew will install nginx on /usr/local.
+</p>
+</div>
+<p>Check your current location:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">pwd</span>
+<span class="hljs-comment"># e.g Output: /Users/cenox/Dev/bemuse-test</span>
+</code></pre>
+<p>Note the output location; this will be used when we configure nginx.</p>
+<p>Next, <code>cd</code> to nginx folder:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/nginx/etc
+</code></pre>
+<p>Use <code>touch</code> command to create a config file to serve the Bemuse server.</p>
+<pre><code class="hljs css language-bash">$ touch servers/bemuse
+</code></pre>
+<p>Open Bemuse setting file with a text editor. Our example will use <code>nano</code>:</p>
+<pre><code class="hljs css language-bash">$ nano servers/bemuse
+</code></pre>
+<p>Insert below text:</p>
+<pre><code class="hljs css language-nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">location</span> / {
+        <span class="hljs-attribute">add_header</span> <span class="hljs-string">'Access-Control-Allow-Origin'</span> <span class="hljs-string">'*'</span>;
+        <span class="hljs-attribute">root</span> /Users/cenox/Dev/bemuse-test;
+        <span class="hljs-comment">#    ^ Replace with the location from previous step</span>
+    }
+}
+</code></pre>
+<p>Save the file by pressing <code>Ctrl+X</code>, <code>Y</code>, <code>Enter</code>.</p>
+<p>Reload nginx:</p>
+<pre><code class="hljs css language-bash">$ nginx -s reload
+</code></pre>
+<p>Now, the music server will be available at <a href="http://localhost">http://localhost</a>. You can play by going to <a href="http://bemuse.ninja/?server=http://localhost">http://bemuse.ninja/?server=http://localhost</a>.</p>
+<h5><a class="anchor" aria-hidden="true" id="additional-note"></a><a href="#additional-note" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Note.</h5>
+<p>When you install nginx in Linux using a package manager, it runs when the OS boots up, but macOS isn't.
+You can use <code>brew services</code> to register the nginx service and make nginx automatically start when you log in.</p>
+<pre><code class="hljs css language-bash">$ brew services start nginx
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="debian-linux-using-nginx-https-nginxorg-en"></a><a href="#debian-linux-using-nginx-https-nginxorg-en" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debian Linux using <a href="https://nginx.org/en/">nginx</a></h4>
+<p>First, open a Terminal and <code>cd</code> into the folder that contains the Bemuse music server (you should see <code>index.json</code> in this folder).</p>
+<p>Then, install nginx:</p>
+<pre><code class="hljs css language-bash">$ sudo apt install nginx
+</code></pre>
+<p>Check your current location:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">pwd</span>
+<span class="hljs-comment"># e.g Output: /home/cenox/bemuse-test</span>
+</code></pre>
+<p>Note the output location. This will be used when we configure nginx.</p>
+<p>Go to nginx folder:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">cd</span> /etc/nginx
+</code></pre>
+<p>Use <code>touch</code> command to create a config file to serve the Bemuse music server.</p>
+<pre><code class="hljs css language-bash">$ sudo touch sites-available/bemuse
+</code></pre>
+<p>Open the setting file with your text editor. This example uses <code>nano</code>:</p>
+<pre><code class="hljs css language-bash">$ sudo nano sites-available/bemuse
+</code></pre>
+<p>Insert below text:</p>
+<pre><code class="hljs css language-nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> localhost;
+    <span class="hljs-attribute">location</span> / {
+        <span class="hljs-attribute">add_header</span> <span class="hljs-string">'Access-Control-Allow-Origin'</span> <span class="hljs-string">'*'</span>;
+        <span class="hljs-attribute">root</span> /home/cenox/bemuse-test; <span class="hljs-comment"># Write location from pwd command.</span>
+    }
+}
+</code></pre>
+<p>Save the file by pressing <code>Ctrl+X</code>, <code>Y</code>, <code>Enter</code>.</p>
+<p>Then, create a symlink to enable the configured site:</p>
+<pre><code class="hljs css language-bash">$ sudo ln -s /etc/nginx/sites-available/bemuse sites-enabled/bemuse
+</code></pre>
+<p>Restart nginx:</p>
+<pre><code class="hljs css language-bash">$ sudo systemctl restart nginx
+</code></pre>
+<p>Now, the music server will be available at <a href="http://localhost">http://localhost</a>. You can play by going to <a href="http://bemuse.ninja/?server=http://localhost">http://bemuse.ninja/?server=http://localhost</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/project/docs/faq.html"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/project/docs/bms-support.html"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#macos">macOS</a></li><li><a href="#windows">Windows</a></li><li><a href="#debian-linux-debian-ubuntu-etc">Debian Linux (Debian, Ubuntu etc.)</a></li></ul></li><li><a href="#a-music-server">A Music Server</a><ul class="toc-headings"><li><a href="#indexjson"><code>index.json</code></a></li><li><a href="#song-directory">Song directory</a></li><li><a href="#bemuse-assets-package">Bemuse assets package</a></li></ul></li><li><a href="#install-bemuse-tools">Install Bemuse Tools</a><ul class="toc-headings"><li><a href="#installation-check">Installation Check</a></li></ul></li><li><a href="#creating-your-server-folder">Creating Your Server Folder</a></li><li><a href="#creating-bemuse-packages">Creating Bemuse Packages</a><ul class="toc-headings"><li><a href="#note">Note</a></li></ul></li><li><a href="#creating-index-file">Creating Index File</a></li><li><a href="#hosting">Hosting</a><ul class="toc-headings"><li><a href="#on-a-web-server">On a Web Server</a></li><li><a href="#on-a-local-machine-windows-xampp">On a Local Machine (Windows, XAMPP)</a></li><li><a href="#on-a-local-machine-macos-nginx-https-nginxorg-en">On a Local Machine (macOS, <a href="https://nginx.org/en/">nginx</a>)</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>

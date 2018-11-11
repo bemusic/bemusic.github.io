@@ -1,10 +1,31 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Developer Guide · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Developer Guide · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="This page describes how to setup the project on your computer for local development. This guide should work on all major operating systems (Windows, Linux, or macOS)."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/en/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Developers</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup navGroupActive"><h3>Creators</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup navGroupActive"><h3>Developers</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
-          var toggler = document.getElementById('navToggler');
-          var nav = document.getElementById('docsNav');
-          toggler.onclick = function() {
-            nav.classList.toggle('docsSliderActive');
-          };
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Developer Guide</h1></header><article><div><span><p>This page describes how to setup the project on your computer for local development. This guide should work on all major operating systems (Windows, Linux, or macOS).</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Developer Guide · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This page describes how to setup the project on your computer for local development. This guide should work on all major operating systems (Windows, Linux, or macOS)."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Developer Guide · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="This page describes how to setup the project on your computer for local development. This guide should work on all major operating systems (Windows, Linux, or macOS)."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="/project/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Developers</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Creators</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Developers</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Developer Guide</h1></header><article><div><span><p>This page describes how to setup the project on your computer for local development. This guide should work on all major operating systems (Windows, Linux, or macOS).</p>
 <h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
 <h3><a class="anchor" aria-hidden="true" id="windows-macos-and-linux"></a><a href="#windows-macos-and-linux" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Windows, macOS and Linux</h3>
 <ul>
@@ -16,58 +37,58 @@
 <h4><a class="anchor" aria-hidden="true" id="prerequisite-check"></a><a href="#prerequisite-check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisite Check</h4>
 <p>Run these commands inside the <strong>Terminal</strong> (<strong>PowerShell/Command Prompt</strong> for Windows).</p>
 <p><strong>Git</strong>: You should see the version number:</p>
-<pre><code class="hljs css bash">$ git --version
-<span class="hljs-comment"># git version 2.17.0</span>
+<pre><code class="hljs css language-sh-session">$ git <span class="hljs-comment">--version</span>
+git <span class="hljs-built_in">version</span> <span class="hljs-number">2.17</span><span class="hljs-number">.0</span>
 </code></pre>
 <p><strong>Node.js</strong>: You should see the version number:</p>
-<pre><code class="hljs css bash">$ node -v
-<span class="hljs-comment"># v9.8.0</span>
+<pre><code class="hljs css language-sh-session">$ <span class="hljs-keyword">node</span> <span class="hljs-title">-v</span>
+v10.<span class="hljs-number">11.0</span>
 </code></pre>
 <p><strong>Yarn</strong>: You should see the version number:</p>
-<pre><code class="hljs css bash">$ yarn -v
-<span class="hljs-comment"># 1.6.0</span>
+<pre><code class="hljs css language-sh-session">$ yarn -v
+<span class="hljs-number">1.6</span><span class="hljs-number">.0</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="setting-up-the-project"></a><a href="#setting-up-the-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting Up the Project</h2>
 <p>First, you should create a folder for Bemuse development:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> mkdir Bemuse</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> mkdir Bemuse</span>
 <span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> Bemuse</span>
 </code></pre>
 <p>Then, clone the Bemuse repository:</p>
-<pre><code class="hljs css bash">$ git <span class="hljs-built_in">clone</span> git@github.com:bemusic/bemuse.git
+<pre><code class="hljs css language-bash">$ git <span class="hljs-built_in">clone</span> git@github.com:bemusic/bemuse.git
 </code></pre>
 <p>After these repository has been cloned, <code>cd</code> into the Bemuse repository:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> bemuse</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> bemuse</span>
 </code></pre>
 <p>Install the project's dependencies. Note that we use Yarn, not npm:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn</span>
 </code></pre>
 <p>Before running the development server, you will have to compile all subprojects:</p>
-<pre><code class="hljs css sh-session">$ yarn lerna <span class="hljs-keyword">run</span><span class="bash"> prepare
+<pre><code class="hljs css language-sh-session">$ yarn lerna <span class="hljs-keyword">run</span><span class="bash"> prepare
 </span></code></pre>
 <p>After everything is installed and all subprojects have been compiled, you can start the development server:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn start</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn start</span>
 </code></pre>
 <p>The game should be accessible at <code>http://localhost:8080/</code>.</p>
 <p>To run unit tests, go to <code>http://localhost:8080/?mode=test</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="coverage-mode"></a><a href="#coverage-mode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Coverage Mode</h2>
 <p>We measure the code coverage to make sure that most part of our code is covered by some tests. This helps us be more confident in modifying our code.</p>
 <p>To turn on the coverage mode, start the server with the <code>BEMUSE_COV</code> environment variable set to <code>true</code>:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> BEMUSE_COV=<span class="hljs-literal">true</span> npm start</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> BEMUSE_COV=<span class="hljs-literal">true</span> npm start</span>
 </code></pre>
 <p>Then run the unit tests. After the unit tests are run, the coverage report will be generated. They can be viewed at <code>http://localhost:8080/coverage/</code>.</p>
 <h3><a class="anchor" aria-hidden="true" id="notes"></a><a href="#notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Notes</h3>
 <p>For Windows users, setting an environment variable on the command line can be difficult. However, you can use <code>cross-env</code> for a cross-platform solution for defining environment variables.</p>
-<pre><code class="hljs css powershell">PS&gt; npm install -g cross-env
+<pre><code class="hljs css language-powershell">PS&gt; npm install -g cross-env
 PS&gt; cross-env BEMUSE_COV=true npm start
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="building"></a><a href="#building" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building</h2>
 <p>To build the source code into a static web application, run:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn build</span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn build</span>
 </code></pre>
 <p>The built files will reside in the <code>build</code> directory.</p>
 <h2><a class="anchor" aria-hidden="true" id="running-tests-from-command-line"></a><a href="#running-tests-from-command-line" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Tests from Command Line</h2>
 <p>You can run tests from the command line by running:</p>
-<pre><code class="hljs css sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn <span class="hljs-built_in">test</span></span>
+<pre><code class="hljs css language-sh-session"><span class="hljs-meta">$</span><span class="bash"> yarn <span class="hljs-built_in">test</span></span>
 </code></pre>
 <p>This will effectively</p>
 <ol>
@@ -76,4 +97,4 @@ PS&gt; cross-env BEMUSE_COV=true npm start
 <li>start a web browser and navigate to the test page, effectively running the tests,</li>
 <li>collect the results and code coverage and write reports.</li>
 </ol>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="bms-extensions.html">← Bemuse&#x27;s BMS Extensions</a><a class="docs-next button" href="architecture.html">Project Architecture →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/project/docs/bms-extensions.html"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/project/docs/architecture.html"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#windows-macos-and-linux">Windows, macOS and Linux</a></li></ul></li><li><a href="#setting-up-the-project">Setting Up the Project</a></li><li><a href="#coverage-mode">Coverage Mode</a><ul class="toc-headings"><li><a href="#notes">Notes</a></li></ul></li><li><a href="#building">Building</a></li><li><a href="#running-tests-from-command-line">Running Tests from Command Line</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://github.com/bemusic/bemuse">GitHub Project</a><a href="https://discord.gg/aB6ucmx">Chat on Discord</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2018 Bemuse Team</section></footer></div></body></html>
