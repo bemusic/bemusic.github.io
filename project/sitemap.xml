@@ -15,4 +15,5 @@
 <url> <loc>https://bemuse.ninja/project/docs/scoring-and-judgment.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bemuse.ninja/project/docs/scoring-and-judgment.html" /> </url>
 <url> <loc>https://bemuse.ninja/project/docs/skinning.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bemuse.ninja/project/docs/skinning.html" /> </url>
 <url> <loc>https://bemuse.ninja/project/docs/user-guide.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bemuse.ninja/project/docs/user-guide.html" /> </url>
+<url> <loc>https://bemuse.ninja/project/docs/workflows.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://bemuse.ninja/project/docs/workflows.html" /> </url>
 </urlset>
