@@ -4,6 +4,7 @@ import {
   ARCHIVE_REGEXP,
   downloadFileEntryFromURL,
 } from './custom-song-resources'
+import { addUnprefixed } from './addUnprefixed'
 
 // TODO [#634]: Remove the `DndResources` class and have users of this class create a `CustomSongResources` directly.
 //
@@ -13,11 +14,13 @@ import {
 //
 // Now this `DndResources` class is really dumb and we want to prefer composition over inheritance.
 // This class should be removed.
-export class DndResources extends CustomSongResources
-  implements ICustomSongResources {
+export class DndResources
+  extends CustomSongResources
+  implements ICustomSongResources
+{
   constructor(event: DragEvent) {
     super({
-      getFiles: log => getFilesFromEvent(event, log),
+      getFiles: (log) => getFilesFromEvent(event, log),
     })
   }
 }
@@ -37,7 +40,7 @@ async function getFilesFromEvent(
     let url = dataTransfer
       .getData('text/uri-list')
       .split(/\r\n|\r|\n/)
-      .filter(t => t && !t.startsWith('#'))[0]
+      .filter((t) => t && !t.startsWith('#'))[0]
     if (ARCHIVE_REGEXP.test(url && url.replace(/[?#].*/, ''))) {
       log('Link to archive file detected. Trying to download')
       return [await downloadFileEntryFromURL(url, log)]
@@ -63,24 +66,24 @@ async function getFilesFromEvent(
     }
   }
 
-  function readEntry(entry: any) {
+  function readEntry(entry: any, prefix = '') {
     if (entry.isFile) {
-      return readFile(entry)
+      return readFile(entry, prefix)
     } else if (entry.isDirectory) {
-      return readDirectory(entry)
+      return readDirectory(entry, prefix)
     }
   }
 
-  function readFile(entry: any) {
+  function readFile(entry: any, prefix = '') {
     return new Promise<File>((resolve, reject) => {
       entry.file(resolve, reject)
-    }).tap(file => {
-      addFile(file)
+    }).tap((file) => {
+      addFile(file, prefix)
     })
   }
 
-  async function readDirectory(dir: any) {
-    let entries = []
+  async function readDirectory(dir: any, prefix = '') {
+    let entries: any[] = []
     let reader = dir.createReader()
     let readMore = () =>
       new Promise<any>((resolve, reject) => {
@@ -92,13 +95,15 @@ async function getFilesFromEvent(
       entries.push(...Array.from(results))
     }
     for (let entry of entries) {
-      await readEntry(entry)
+      await readEntry(entry, prefix + dir.name + '/')
     }
   }
 
-  function addFile(file: File) {
+  function addFile(file: File, prefix = '') {
     if (file) {
-      out.push({ name: file.name, file })
+      addUnprefixed(prefix, file.name, (name) => {
+        out.push({ name, file })
+      })
     }
   }
 }
