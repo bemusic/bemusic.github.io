@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>How to Host a Music Server (New Method, Draft) · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Bemuse comes with a default Music Server to help new players get started. This"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="How to Host a Music Server (New Method, Draft) · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="Bemuse comes with a default Music Server to help new players get started. This"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="https://faq.bemuse.ninja" target="_self">Community FAQ</a></li><li class=""><a href="/project/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Creators</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Creators</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Music Server</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/project/docs/song-workshop.html">Music Server [New] (Draft)</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li><li class="navListItem"><a class="navItem" href="/project/docs/workflows.html">Workflows</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Preparing BMS Song for Online Play in Bemuse [new method] · Bemuse</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This guide will walk you through the steps of preparing a BMS song to make it"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Preparing BMS Song for Online Play in Bemuse [new method] · Bemuse"/><meta property="og:type" content="website"/><meta property="og:url" content="https://bemuse.ninja/project/index.html"/><meta property="og:description" content="This guide will walk you through the steps of preparing a BMS song to make it"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/project/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="stylesheet" href="/project/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/project/"><img class="logo" src="/project/img/white-logo.png" alt="Bemuse"/><h2 class="headerTitleWithLogo">Bemuse</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://bemuse.ninja" target="_self">Play</a></li><li class="siteNavGroupActive"><a href="/project/docs/user-guide.html" target="_self">Docs</a></li><li class=""><a href="https://faq.bemuse.ninja" target="_self">Community FAQ</a></li><li class=""><a href="/project/contribute.html" target="_self">Contribute</a></li><li class=""><a href="https://discord.gg/aB6ucmx" target="_self">Discord</a></li><li class=""><a href="https://github.com/bemusic/bemuse" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Creators</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Users</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/user-guide.html">User Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/scoring-and-judgment.html">Scoring and Judgment</a></li><li class="navListItem"><a class="navItem" href="/project/docs/faq.html">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Creators</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/project/docs/song-workshop.html">Preparing Song for Online Play [NEW]</a></li><li class="navListItem"><a class="navItem" href="/project/docs/music-server.html">Legacy Music Server</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-support.html">BMS Support</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bms-extensions.html">BMS Extensions</a></li><li class="navListItem"><a class="navItem" href="/project/docs/bemusepack.html">.bemuse File Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Developers</h3><ul><li class="navListItem"><a class="navItem" href="/project/docs/developer-guide.html">Developer Guide</a></li><li class="navListItem"><a class="navItem" href="/project/docs/architecture.html">Architecture</a></li><li class="navListItem"><a class="navItem" href="/project/docs/game-loop.html">The Game Loop</a></li><li class="navListItem"><a class="navItem" href="/project/docs/skinning.html">Skinning</a></li><li class="navListItem"><a class="navItem" href="/project/docs/options.html">Options</a></li><li class="navListItem"><a class="navItem" href="/project/docs/colors.html">Colors</a></li><li class="navListItem"><a class="navItem" href="/project/docs/workflows.html">Workflows</a></li></ul></div></div></section></div><script>
             document.addEventListener('DOMContentLoaded', function() {
               createToggler('#navToggler', '#docsNav', 'docsSliderActive');
               createToggler('#tocToggler', 'body', 'tocActive');
@@ -25,39 +25,78 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">How to Host a Music Server (New Method, Draft)</h1></header><article><div><span><p>Bemuse comes with a default Music Server to help new players get started. This
-Default Music Server contains a curated selection of developer’s favorite songs.</p>
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Preparing BMS Song for Online Play in Bemuse [new method]</h1></header><article><div><span><p>This guide will walk you through the steps of preparing a BMS song to make it
+playable online in Bemuse.</p>
+<p>While players can download a BMS archive and load it in Bemuse, preparing a song
+for online play has a few extra benefits:</p>
+<table>
+<thead>
+<tr><th>Regular BMS archive played in Bemuse</th><th>BMS prepared for online play in Bemuse</th></tr>
+</thead>
+<tbody>
+<tr><td>Has to be downloaded in order to play</td><td>Can be played online without downloading</td></tr>
+<tr><td>Displays a generic eyecatch image (※1)</td><td>Can display a custom eyecatch image</td></tr>
+<tr><td>Displays a generic background image (※1)</td><td>Can display a custom background image</td></tr>
+<tr><td>BGA is not supported in Bemuse (※1)</td><td>Can play a high-definition video file as BGA</td></tr>
+<tr><td>No commentary and links in the Information tab</td><td>Can add commentary and links to the Information tab</td></tr>
+<tr><td>Different songs have different loudness</td><td>Loudness level is normalized with ReplayGain</td></tr>
+<tr><td>No song preview</td><td>Players can hear a preview of the song in Bemuse</td></tr>
+</tbody>
+</table>
+<!--
+- **Convenience and speed:** Players don’t have to download the archive by
+  themselves and the files are optimized so archive downloads fast over the
+  internet.
+- **Extra features:** You can specify an eyecatch image (displayed while the
+  game is loading); a background image (shown in-game), a high-definition
+  background video file (play in-game); commentaries by the artists and links to
+  the songs.
+- **Volume normalization:** Third, each song’s sound volume will be normalized,
+  so each song will have the same overall volume.
+- **Song preview:** And finally, players can preview the song before playing it.
+-->
+<p>※1 — Except for <code>.bmson</code> charts where Bemuse has support for these features.</p>
+<h2><a class="anchor" aria-hidden="true" id="outline"></a><a href="#outline" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Outline</h2>
 <p>This guide will cover:</p>
 <ol>
 <li>How to prepare a BMS song for playing in Bemuse.</li>
-<li>How to test it with Bemuse.</li>
-<li>How to publish them as Music Servers.</li>
+<li>How to test it in Bemuse locally.</li>
+<li>How to test it online in Bemuse.</li>
+<li>How to publish multiple songs as Music Servers.</li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="what-you-need"></a><a href="#what-you-need" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What you need</h2>
 <ul>
-<li>The BMS package(s) that you want to put on the music server.</li>
-<li>A web hosting provider that can be configured to
+<li><p>To prepare a song for online play:</p>
+<ul>
+<li>The BMS archive to prepare.</li>
+<li>Latest version of Google Chrome or Microsoft Edge web browser.</li>
+</ul></li>
+<li><p>To host a music server:</p>
+<ul>
+<li>A web hosting provider that supports HTTPS and can be configured to
 <a href="https://enable-cors.org/index.html">enable CORS</a>.</li>
-<li>Google Chrome or Microsoft Edge web browser.</li>
+</ul></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="the-song-workshop-application"></a><a href="#the-song-workshop-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The song workshop application</h2>
 <p>Using Google Chrome or Microsoft Edge, go to the Bemuse Song Workshop
 application at this URL:</p>
-<div style="text-align: center; font-size: 1.5em">
-<p><a href="https://song-workshop.bemuse.ninja/">https://song-workshop.bemuse.ninja/</a></p>
+<div style="text-align: center; font-size: 2em">
+<p><strong><a href="https://song-workshop.bemuse.ninja/">https://song-workshop.bemuse.ninja/</a></strong></p>
 </div>
 <p>We will use this application throughout the rest of this guide.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Please note that this application is <strong>very buggy</strong> and the developer currently
-does not have the resources to provide support. However if you are a developer,
-you can
+<p>Please note that this application can be <strong>very buggy</strong> and the developer
+currently does not have the resources to provide support, although Bemuse’s
+developers also use this app to manage the official server. However if you are a
+developer, you can
 <a href="https://github.com/bemusic/song-workshop">find the source code on GitHub</a>. If
 you managed to fix some issues, pull requests are welcome.</p>
 </div>
-<h2><a class="anchor" aria-hidden="true" id="preparing-song-data"></a><a href="#preparing-song-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preparing song data</h2>
-<h3><a class="anchor" aria-hidden="true" id="extract-the-song"></a><a href="#extract-the-song" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extract the song</h3>
-<p>First, extract the BMS song into a folder.</p>
+<h2><a class="anchor" aria-hidden="true" id="preparing-a-song"></a><a href="#preparing-a-song" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preparing a song</h2>
+<h3><a class="anchor" aria-hidden="true" id="extract-the-archive"></a><a href="#extract-the-archive" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extract the archive</h3>
+<p>First, extract the BMS archive into a folder.</p>
+<p><img src="/project/docs/assets/song-workshop/initialstate.png" alt="Screenshot"></p>
 <h3><a class="anchor" aria-hidden="true" id="open-the-folder-in-song-workshop"></a><a href="#open-the-folder-in-song-workshop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open the folder in Song Workshop</h3>
 <ul>
 <li><p>In Song Workshop, select <strong>Custom song</strong>.</p>
@@ -77,6 +116,9 @@ you managed to fix some issues, pull requests are welcome.</p>
 </li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="optimize-sound-assets"></a><a href="#optimize-sound-assets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optimize sound assets</h3>
+<p>BMS archives typically contains hundreds of sound files. Downloading many small
+files on the web can be slow. By optimizing sound assets, all sounds will be
+compressed as <code>.ogg</code> files and then bundled up into <code>.bemuse</code> files.</p>
 <ul>
 <li><p>Go to the <strong>Sound assets</strong> tab.</p></li>
 <li><p>Click <strong>Optimize sound assets</strong>.</p></li>
@@ -86,9 +128,16 @@ take several minutes.</p>
 <p><img src="/project/docs/assets/song-workshop/soundasset.png" alt="Screenshot"></p>
   </figure>
 </li>
-<li><p>You will also see the a new subfolder: <code>bemuse-data/sound</code>.</p></li>
+<li><p>You will also see the a new subfolder <code>bemuse-data/sound</code> with optimized
+files.</p>
+<p><img src="/project/docs/assets/song-workshop/aftersound.png" alt="Screenshot"></p></li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" id="generate-a-chart-listing"></a><a href="#generate-a-chart-listing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate a chart listing</h3>
+<h3><a class="anchor" aria-hidden="true" id="generate-a-metadata-file"></a><a href="#generate-a-metadata-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate a metadata file</h3>
+<p>Normally, the BMS song folder must be scanned to search for available chart
+files (<code>.bms</code> <code>.bme</code> <code>.bml</code> <code>.bmson</code>), and each chart file must be parsed to
+obtain the metadata. However, it is not practical on the web to scan directories
+and read each file. Therefore, for online songs Bemuse requires a metadata file
+which contains information about the song and all its available charts.</p>
 <ul>
 <li><p>Go to the <strong>Charts</strong> tab.</p></li>
 <li><p>Click on <strong>Scan charts</strong>.</p></li>
@@ -97,15 +146,19 @@ take several minutes.</p>
 <p><img src="/project/docs/assets/song-workshop/charts.png" alt="Screenshot"></p>
   </figure>
 </li>
-<li><p>You will also see the a new file in the song folder: <code>bemuse-song.json</code>.</p></li>
+<li><p>You will also see the a new file in the song folder: <code>bemuse-song.json</code>.</p>
+<p><img src="/project/docs/assets/song-workshop/afterchart.png" alt="Screenshot"></p></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="generate-a-song-preview"></a><a href="#generate-a-song-preview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate a song preview</h3>
+<p>Generating a song preview allows player to listen to an excerpt of the song in
+the Music Selection screen.</p>
 <ul>
 <li><p>Go to <strong>Preview</strong> tab.</p></li>
 <li><p>Select a chart to generate a preview. Usually I pick the medium-difficulty
 chart.</p></li>
 <li><p>Click <strong>Render song</strong> and wait until finished. This will render the selected
-chart into a high-quality OGG file.</p></li>
+chart into a high-quality OGG file. This process will also analyze the song’s
+loudness and save it to the song’s metadata.</p></li>
 <li><p>Listen to the song and choose starting point of the song preview. Song
 previews are always 30 seconds long.</p></li>
 <li><p>Put in the seconds number and then click <strong>Create song preview</strong>.</p></li>
@@ -114,23 +167,46 @@ previews are always 30 seconds long.</p></li>
 <p><img src="/project/docs/assets/song-workshop/preview.png" alt="Screenshot"></p>
   </figure>
 </li>
+<li><p>New files will be created: <code>bemuse-data/song.ogg</code> and
+<code>bemuse-data/preview.mp3</code></p>
+<p><img src="/project/docs/assets/song-workshop/afterpreview.png" alt="Screenshot"></p></li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" id="add-song-metadata"></a><a href="#add-song-metadata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add song metadata</h3>
+<h3><a class="anchor" aria-hidden="true" id="add-more-song-metadata"></a><a href="#add-more-song-metadata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add more song metadata</h3>
 <ul>
 <li><p>Go to the <strong>Metadata</strong> tab.</p></li>
-<li><p>Add the missing metadata as available.</p></li>
-<li><p>Click <strong>Save song metadata</strong> to save the metadata in the song folder as
-<code>bemuse-song.json</code>.</p></li>
+<li><p>Add the metadata and click <strong>Save song metadata</strong> to save the metadata in the
+song folder as <code>bemuse-song.json</code>.</p>
+  <figure>
+<p><img src="/project/docs/assets/song-workshop/meta.png" alt="Screenshot"></p>
+  </figure>
+</li>
+<li><p>The song description will be saved in <code>README.md</code>.</p>
+<p><img src="/project/docs/assets/song-workshop/aftermeta.png" alt="Screenshot"></p></li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" id="add-eyecatch-image-and-background-image"></a><a href="#add-eyecatch-image-and-background-image" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add eyecatch image and background image</h3>
-<p>Add these two files:</p>
+<h3><a class="anchor" aria-hidden="true" id="add-image-and-video-files"></a><a href="#add-image-and-video-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add image and video files</h3>
 <ul>
-<li><code>eyecatch_image.png</code> — Displayed while loading the song.</li>
-<li><code>back_image.png</code> — Displayed while the song is playing in the background.</li>
+<li><p>Add these files:</p>
+<ul>
+<li><code>bemuse-data/eyecatch_image.{jpg,png}</code> — Displayed while loading the song.</li>
+<li><code>bemuse-data/back_image.{jpg,png}</code> — Displayed in-game.</li>
+<li><code>bemuse-data/bga.{mp4,webm}</code> — Background animation.</li>
+</ul>
+<p><img src="/project/docs/assets/song-workshop/aftervisual.png" alt="Screenshot"></p></li>
+<li><p>Go to the <strong>Visuals</strong> tab.</p></li>
+<li><p>Click on the <strong>Scan</strong> button.</p></li>
+<li><p>You should see the images and video files displayed.</p></li>
+<li><p>For video, click on <strong>Test Synchronization</strong> to check if the video and audio
+are in sync. If not, click <strong>Set video offset</strong> and test again.</p>
+  <figure>
+<p><img src="/project/docs/assets/song-workshop/visuals.png" alt="Screenshot"></p>
+  </figure>
+</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="clean-up-files"></a><a href="#clean-up-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clean up files</h3>
-<p>Since all sound assets have been optimized and Bemuse does not use image BGA
-files, we can delete these files:</p>
+<p>Now, all assets has been optimized and all necessary metadata files are created.
+We can now clean up the folder to save up space.</p>
+<ul>
+<li><p>Delete these files:</p>
 <ul>
 <li><code>*.ogg</code> <code>*.wav</code> — Keysound files</li>
 <li><code>*.png</code> <code>*.bmp</code> <code>*.jpg</code> — BGA files</li>
@@ -142,38 +218,84 @@ files, we can delete these files:</p>
 <li><code>bemuse-song.json</code> — Metadata file</li>
 <li><code>bemuse-data</code> — Optimized data folder</li>
 </ul>
+<p><img src="/project/docs/assets/song-workshop/aftercleanup.png" alt="Screenshot"></p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="congratulations"></a><a href="#congratulations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Congratulations!</h3>
+<p>Now the song has been prepared for online play. The next step is to test your
+song locally in Bemuse.</p>
 <h2><a class="anchor" aria-hidden="true" id="test-your-song-locally"></a><a href="#test-your-song-locally" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your song locally</h2>
 <p>To test your song locally,</p>
 <ul>
 <li>Launch <strong>Bemuse</strong>.</li>
-<li>Drag the song folder into <strong>Custom BMS</strong> dialog.</li>
+<li>Drag the song folder into the <strong>Custom BMS</strong> dialog.</li>
 </ul>
-<p>Bemuse will detect <code>bemuse-song.json</code> and load the song. You should hear the
-song preview.</p>
+<p>Bemuse will detect <code>bemuse-song.json</code> in the folder and load the song. You
+should hear the song preview, see the images, video, and other information.</p>
 <h2><a class="anchor" aria-hidden="true" id="upload-your-song"></a><a href="#upload-your-song" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Upload your song</h2>
-<p>Upload the song folder to a hosting service. Obtain the URL to the
-<code>bemuse-song.json</code> file.</p>
+<p>Now that your song is prepared and tested, it’s time to put it online!</p>
+<ul>
+<li><p>Upload the song folder to a hosting service.</p>
+<p><img src="/project/docs/assets/song-workshop/upload-song.png" alt="Screenshot"></p></li>
+<li><p>Obtain the URL to the <code>bemuse-song.json</code> file.</p>
+<ul>
+<li>For example:
+<a href="https://music4.bemuse.ninja/songs/%5Bfrums%5Dcredits/bemuse-song.json">https://music4.bemuse.ninja/songs/[frums]credits/bemuse-song.json</a></li>
+</ul></li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="test-your-song-online"></a><a href="#test-your-song-online" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your song online</h2>
-<p>To test your song locally,</p>
+<p>Now that your song is online, you can test it!</p>
 <ul>
-<li>Copy the URL of <code>bemuse-song.json</code> to the clipboard.</li>
-<li>Launch <strong>Bemuse</strong>.</li>
-<li>Open the <strong>Custom BMS</strong> dialog.</li>
-<li>Press <strong>Cmd+V</strong> or <strong>Ctrl+V</strong> to paste the URL.</li>
-</ul>
-<p>If you can play the song, then congratulations! It is now ready to be published
-in a Music Server.</p>
-<h2><a class="anchor" aria-hidden="true" id="create-a-music-server"></a><a href="#create-a-music-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a music server</h2>
+<li><p>Go to
+<code>https:/<i></i>/bemuse.ninja/?server=<em>&lt;url/to/bemuse-song.json&gt;</em></code><br></p>
 <ul>
-<li>Go to the Bemuse Song Workshop app.</li>
-<li>Select <strong>Server Manager</strong>.</li>
-<li>Click <strong>Create a new server file</strong>.</li>
-<li>Create an empty directory for the server and save the <code>index.json</code> file there.</li>
-<li>Paste in the URL of <code>bemuse-song.json</code> file.</li>
-<li>Click <strong>Add</strong>. The URL should be added to the list.</li>
-<li>Click <strong>Scan songs</strong>.</li>
+<li><p>For example:
+<a href="https://bemuse.ninja/?server=https://music4.bemuse.ninja/songs/%5Bfrums%5Dcredits/bemuse-song.json">https://bemuse.ninja/?server=https://music4.bemuse.ninja/songs/[frums]credits/bemuse-song.json</a></p></li>
+<li><p>(Alternatively, you can launch Bemuse normally and then paste the URL into
+the Custom BMS dialog.)</p></li>
+</ul></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/project/docs/music-server.html"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/project/docs/bms-support.html"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#what-you-need">What you need</a></li><li><a href="#the-song-workshop-application">The song workshop application</a></li><li><a href="#preparing-song-data">Preparing song data</a><ul class="toc-headings"><li><a href="#extract-the-song">Extract the song</a></li><li><a href="#open-the-folder-in-song-workshop">Open the folder in Song Workshop</a></li><li><a href="#optimize-sound-assets">Optimize sound assets</a></li><li><a href="#generate-a-chart-listing">Generate a chart listing</a></li><li><a href="#generate-a-song-preview">Generate a song preview</a></li><li><a href="#add-song-metadata">Add song metadata</a></li><li><a href="#add-eyecatch-image-and-background-image">Add eyecatch image and background image</a></li><li><a href="#clean-up-files">Clean up files</a></li></ul></li><li><a href="#test-your-song-locally">Test your song locally</a></li><li><a href="#upload-your-song">Upload your song</a></li><li><a href="#test-your-song-online">Test your song online</a></li><li><a href="#create-a-music-server">Create a music server</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://discord.gg/aB6ucmx">Discord Community</a><a href="https://faq.bemuse.ninja">Community FAQ</a><a href="https://github.com/bemusic/bemuse">GitHub Project</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2021 Bemuse Team</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>If you can play the song, then congratulations! Your song has been prepared for
+online play and is now online.</p>
+<h2><a class="anchor" aria-hidden="true" id="create-a-music-server-file-to-publish-multiple-songs"></a><a href="#create-a-music-server-file-to-publish-multiple-songs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a music server file to publish multiple songs</h2>
+<p>So far, you have created a “single-song server” which lets you select one song.
+But what if you want to publish multiple songs for people to play at the same
+place? In this case you would create a <strong>music server file.</strong></p>
+<ul>
+<li><p>Go to the <strong>Bemuse Song Workshop</strong> app.</p></li>
+<li><p>Select <strong>Server Manager</strong>.</p></li>
+<li><p>Click <strong>Create a new server file</strong>.</p></li>
+<li><p>Create an empty directory for the server and save the <code>index.json</code> file there.</p></li>
+<li><p>Paste in the URLs of <code>bemuse-song.json</code> file.</p></li>
+<li><p>Click <strong>Add</strong>. The URL should be added to the list.</p></li>
+<li><p>Click <strong>Update data</strong>.</p></li>
+<li><p>Check the results.</p>
+  <figure>
+<p><img src="/project/docs/assets/song-workshop/server.png" alt="Screenshot"></p>
+  </figure>
+</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="upload-your-music-server"></a><a href="#upload-your-music-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Upload your music server</h2>
+<ul>
+<li><p>Upload the <code>index.json</code> file to a hosting service.</p>
+<p><img src="/project/docs/assets/song-workshop/upload-index.png" alt="Screenshot"></p></li>
+<li><p>Obtain the URL to the <code>index.json</code> file.</p>
+<ul>
+<li>This is your <strong>Server URL</strong>.</li>
+<li>You can remove the <code>/index.json</code> part as Bemuse will add it automatically.</li>
+<li>For example, my server is at <a href="https://flicknote.bemuse.ninja/index.json">https://flicknote.bemuse.ninja/index.json</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="test-and-share-your-music-server"></a><a href="#test-and-share-your-music-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test and share your music server</h2>
+<p>Now that your music server is online, you can try it in Bemuse and share it with
+your friends!</p>
+<ul>
+<li><p>Go to <code>https:/<i></i>/bemuse.ninja/?server=<em>&lt;Server
+URL&gt;</em></code><br></p>
+<ul>
+<li>For example, <a href="https://bemuse.ninja/?server=https://flicknote.bemuse.ninja">https://bemuse.ninja/?server=https://flicknote.bemuse.ninja</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/project/docs/faq.html"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/project/docs/music-server.html"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#outline">Outline</a></li><li><a href="#what-you-need">What you need</a></li><li><a href="#the-song-workshop-application">The song workshop application</a></li><li><a href="#preparing-a-song">Preparing a song</a><ul class="toc-headings"><li><a href="#extract-the-archive">Extract the archive</a></li><li><a href="#open-the-folder-in-song-workshop">Open the folder in Song Workshop</a></li><li><a href="#optimize-sound-assets">Optimize sound assets</a></li><li><a href="#generate-a-metadata-file">Generate a metadata file</a></li><li><a href="#generate-a-song-preview">Generate a song preview</a></li><li><a href="#add-more-song-metadata">Add more song metadata</a></li><li><a href="#add-image-and-video-files">Add image and video files</a></li><li><a href="#clean-up-files">Clean up files</a></li><li><a href="#congratulations">Congratulations!</a></li></ul></li><li><a href="#test-your-song-locally">Test your song locally</a></li><li><a href="#upload-your-song">Upload your song</a></li><li><a href="#test-your-song-online">Test your song online</a></li><li><a href="#create-a-music-server-file-to-publish-multiple-songs">Create a music server file to publish multiple songs</a></li><li><a href="#upload-your-music-server">Upload your music server</a></li><li><a href="#test-and-share-your-music-server">Test and share your music server</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/project/" class="nav-home"><img src="/project/img/white-logo.png" alt="Bemuse" width="66" height="58"/></a><div><h5>Docs</h5><a href="/project/docs/en/user-guide.html">User Documentation</a><a href="/project/docs/en/developer-guide.html">Developer Documentation</a></div><div><h5>Community</h5><a href="https://discord.gg/aB6ucmx">Discord Community</a><a href="https://faq.bemuse.ninja">Community FAQ</a><a href="https://github.com/bemusic/bemuse">GitHub Project</a></div><div><h5>Social</h5><a href="https://twitter.com/bemusegame" target="_blank">Twitter @bemusegame</a></div></section><section class="copyright">Copyright © 2021 Bemuse Team</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
