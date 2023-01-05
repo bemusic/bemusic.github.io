@@ -1,14 +1,17 @@
-import ObjectID from 'bson-objectid'
 import {
   ScoreboardClient,
   ScoreboardEntry,
   ScoreboardRow,
 } from './ScoreboardClient'
+
+import { MappingMode } from 'bemuse/rules/mapping-mode'
+import ObjectID from 'bson-objectid'
+import type { ScoreCount } from 'bemuse/rules/accuracy'
 import delay from 'delay'
 
 interface Submission {
   md5: string
-  playMode: string
+  playMode: MappingMode
   entry: ScoreboardEntry
 }
 
@@ -63,6 +66,10 @@ export function createFakeScoreboardClient(): ScoreboardClient {
       }
     },
     retrieveRankingEntries: async (options) => {
+      if (!options.md5s.every((x) => typeof x === 'string')) {
+        console.error('Invalid md5s...', options.md5s)
+        throw new Error('Invalid md5s (this is a programmer error)')
+      }
       await delay(100)
       const { username } = decodeFakePlayerToken(options.playerToken)
       const set = new Set<string>(options.md5s)
@@ -146,7 +153,7 @@ function decodeFakePlayerToken(token: string) {
 export interface ScoreData {
   score: number
   combo: number
-  count: [number, number, number, number, number]
+  count: ScoreCount
   total: number
   log: string
 }

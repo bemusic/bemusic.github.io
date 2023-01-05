@@ -1,0 +1,7 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
