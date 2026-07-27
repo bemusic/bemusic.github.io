@@ -1,0 +1,17 @@
+"use strict";(this.webpackChunk=this.webpackChunk||[]).push([[76],{87240:(n,A,e)=>{e.d(A,{Z:()=>s})
+var o=e(74045),i=e.n(o),t=e(12850),a=e.n(t)()(i())
+a.push([n.id,".coming-soon {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  width: 100%;\n  transform: translate(-50%, -50%);\n  animation: 4s coming-soon--fade;\n  text-align: center;\n}\n.coming-soon p {\n  margin: 0;\n  padding: 0;\n  font: 3vw Helvetica Neue, Helvetica, sans-serif;\n  color: #8b8685;\n}\n.coming-soon h1 {\n  margin: 0;\n  padding: 0;\n  font: bold 8vw Helvetica Neue, Helvetica, sans-serif;\n}\n.coming-soon ul {\n  margin: 48px 0 0;\n  padding: 0;\n  list-style: none;\n}\n.coming-soon li {\n  display: inline-block;\n  margin: 0 5px;\n}\n.coming-soon a {\n  display: inline-block;\n  color: #8b8685;\n  text-decoration: none;\n  border: 1px solid #656463;\n  padding: 4px 6px;\n}\n\n@keyframes coming-soon--fade {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}","",{version:3,sources:["webpack://./coming-soon/style.scss"],names:[],mappings:"AAAA;EACE,eAAA;EACA,QAAA;EACA,SAAA;EACA,WAAA;EACA,gCAAA;EACA,+BAAA;EACA,kBAAA;AACF;AACE;EACE,SAAA;EACA,UAAA;EACA,+CAAA;EACA,cAAA;AACJ;AAEE;EACE,SAAA;EACA,UAAA;EACA,oDAAA;AAAJ;AAGE;EACE,gBAAA;EACA,UAAA;EACA,gBAAA;AADJ;AAIE;EACE,qBAAA;EACA,aAAA;AAFJ;AAKE;EACE,qBAAA;EACA,cAAA;EACA,qBAAA;EACA,yBAAA;EACA,gBAAA;AAHJ;;AAOA;EACE;IACE,UAAA;EAJF;EAMA;IACE,UAAA;EAJF;AACF",sourcesContent:[".coming-soon {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  width: 100%;\n  transform: translate(-50%, -50%);\n  animation: 4s coming-soon--fade;\n  text-align: center;\n\n  p {\n    margin: 0;\n    padding: 0;\n    font: 3vw Helvetica Neue, Helvetica, sans-serif;\n    color: #8b8685;\n  }\n\n  h1 {\n    margin: 0;\n    padding: 0;\n    font: bold 8vw Helvetica Neue, Helvetica, sans-serif;\n  }\n\n  ul {\n    margin: 48px 0 0;\n    padding: 0;\n    list-style: none;\n  }\n\n  li {\n    display: inline-block;\n    margin: 0 5px;\n  }\n\n  a {\n    display: inline-block;\n    color: #8b8685;\n    text-decoration: none;\n    border: 1px solid #656463;\n    padding: 4px 6px;\n  }\n}\n\n@keyframes coming-soon--fade {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n"],sourceRoot:""}])
+const s=a},77217:(n,A,e)=>{e.r(A),e.d(A,{main:()=>f})
+var o=e(45227),i=e.n(o),t=e(88397),a=e.n(t),s=e(50872),l=e.n(s),c=e(53974),r=e.n(c),d=e(98192),m=e.n(d),E=e(92789),g=e.n(E),p=e(87240),C={}
+C.styleTagTransform=g(),C.setAttributes=r(),C.insert=l().bind(null,"head"),C.domAPI=a(),C.insertStyleElement=m()
+i()(p.Z,C)
+const b=p.Z&&p.Z.locals?p.Z.locals:void 0
+var u={}
+u.styleTagTransform=g(),u.setAttributes=r(),u.insert=l().bind(null,"head"),u.domAPI=a(),u.insertStyleElement=m()
+i()(b,u)
+b&&b.locals&&b.locals
+function f(){const n=document.createElement("div")
+n.className="coming-soon",n.innerHTML='<p>BEAT☆MUSIC☆SEQUENCE</p><h1>Coming Soon</h1><ul><li><a href="https://github.com/bemusic/bemuse">GitHub Project</a></li><li><a href="/badgeboard/">Badgeboard</a></li><li><a href="https://gitter.im/bemusic/bemuse">Gitter Chat</a></li><li><a class="coming-soon--demo" href="#">Loading Demo</a></li></ul>',Promise.all([e.e(602),e.e(287),e.e(2),e.e(982),e.e(51)]).then(e.bind(e,54532)).then(A=>{const e=n.querySelector(".coming-soon--demo")
+A.main(e)}),document.body.appendChild(n)}}}])
+
+//# sourceMappingURL=comingSoon-e5ca099030f5bd493b11.js.map

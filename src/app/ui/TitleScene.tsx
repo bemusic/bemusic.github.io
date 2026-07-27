@@ -17,6 +17,8 @@ import Toolbar from './Toolbar'
 import { selectOptions } from '../redux/ReduxState'
 import version from 'bemuse/utils/version'
 
+import logoWithShadow from './images/logo-with-shadow.svg'
+
 const HAS_PARENT = (() => {
   try {
     return window.parent !== window
@@ -115,7 +117,7 @@ const TitleScene = () => {
             <div className='TitleSceneのtagline'>
               online, web-based rhythm game
             </div>
-            <img src={require('./images/logo-with-shadow.svg')} />
+            <img src={logoWithShadow} />
           </div>
           <div className='TitleSceneのenter'>
             <a onClick={enterGame} data-testid='enter-game'>

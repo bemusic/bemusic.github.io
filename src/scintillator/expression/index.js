@@ -1,6 +1,6 @@
 import debug from 'debug'
 
-import parser from './parser.pegjs'
+import parser from './parser'
 
 const log = debug('scintillator:expression')
 

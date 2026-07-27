@@ -7,6 +7,8 @@ import SceneHeading from 'bemuse/ui/SceneHeading'
 import { SceneManagerContext } from 'bemuse/scene-manager'
 import SceneToolbar from 'bemuse/ui/SceneToolbar'
 
+import djBemuseImage from './about-scene/DJBM.png'
+
 const Artists = ({ artists }: { artists: { name: string; url: string }[] }) => {
   if (artists.length === 0) {
     return <span>loading...</span>
@@ -65,7 +67,7 @@ const AboutScene = () => {
             available on <a href='https://github.com/bemusic/bemuse'>GitHub</a>.
           </p>
           <div className='AboutSceneのdjbm'>
-            <img src={require('./about-scene/DJBM.png')} alt='DJ Bemuse' />
+            <img src={djBemuseImage} alt='DJ Bemuse' />
           </div>
         </article>
         <article>

@@ -11,6 +11,8 @@ import { OnlineContext } from 'bemuse/online/instance'
 import Panel from 'bemuse/ui/Panel'
 import c from 'classnames'
 
+import djBemuseImage from 'bemuse/app/ui/about-scene/DJBM.png'
+
 export interface AuthenticationPanelProps {
   onFinish?: () => void
 }
@@ -128,10 +130,7 @@ const AuthenticationPanel = ({ onFinish }: AuthenticationPanelProps) => {
       <Panel title='Bemuse Online Ranking'>
         <div className='AuthenticationPanelのlayout'>
           <div className='AuthenticationPanelのtitle'>
-            <img
-              src={require('bemuse/app/ui/about-scene/DJBM.png')}
-              alt='DJ Bemuse'
-            />
+            <img src={djBemuseImage} alt='DJ Bemuse' />
             <div className='AuthenticationPanelのidentification'>
               Bemuse
               <br />

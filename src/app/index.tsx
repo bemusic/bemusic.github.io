@@ -7,11 +7,7 @@ import {
   getDefaultCustomFolderContext,
   getSongsFromCustomFolders,
 } from 'bemuse/custom-folder'
-import {
-  getInitialGrepString,
-  getMusicServer,
-  getTimeSynchroServer,
-} from './query-flags'
+import { getInitialGrepString, getMusicServer } from './query-flags'
 import {
   shouldShowAbout,
   shouldShowModeSelect,
@@ -30,21 +26,19 @@ import { monetize } from 'monetizer'
 import { musicSearchTextSlice } from './entities/MusicSearchText'
 import now from 'bemuse/utils/now'
 import { optionsSlice } from './entities/Options'
-import { QueryClientProvider } from 'react-query'
-import { queryClient } from 'bemuse/react-query'
+import { isQueryFlagEnabled } from 'bemuse/flags'
+import MusicSelectScene from './ui/MusicSelectScene'
 
 const store = configureStore()
 
 const sceneManager = new SceneManager(({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <div className='bemuse-scene'>
-      <Provider store={store}>
-        <SceneManagerContext.Provider value={sceneManager}>
-          {children}
-        </SceneManagerContext.Provider>
-      </Provider>
-    </div>
-  </QueryClientProvider>
+  <div className='bemuse-scene'>
+    <Provider store={store}>
+      <SceneManagerContext.Provider value={sceneManager}>
+        {children}
+      </SceneManagerContext.Provider>
+    </Provider>
+  </div>
 ))
 
 // Allow hot reloading of some modules.
@@ -60,7 +54,7 @@ function bootUp() {
   )
   store.dispatch(
     musicSearchTextSlice.actions.MUSIC_SEARCH_TEXT_INITIALIZED({
-      text: getInitialGrepString(),
+      text: getInitialGrepString() ?? '',
     })
   )
   store.dispatch(optionsSlice.actions.LOAD_FROM_STORAGE())
@@ -81,9 +75,7 @@ export function main() {
   displayFirstScene()
 
   // synchronize time
-  const timeSynchroServer =
-    getTimeSynchroServer() || 'wss://timesynchro.herokuapp.com/'
-  if (timeSynchroServer) now.synchronize(timeSynchroServer)
+  now.synchronize()
 
   trackFullscreenEvents()
 
@@ -101,6 +93,9 @@ function getFirstScene() {
   }
   if (shouldShowModeSelect()) {
     return <ModeSelectScene />
+  }
+  if (isQueryFlagEnabled('skip-to-music-select')) {
+    return <MusicSelectScene />
   }
 
   const scene = React.createElement(TitleScene)

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { inspect } from 'util'
 import MusicSelectPreviewer from 'bemuse/music-previewer/MusicSelectPreviewer'
 import getPlayableCharts from 'bemuse/music-collection/getPlayableCharts'
 import getPreviewResourceUrl from 'bemuse/music-collection/getPreviewResourceUrl'
@@ -132,7 +133,7 @@ const SongRow = ({
       <strong
         onClick={() => {
           console.log(song)
-          alert(require('util').inspect(song))
+          alert(inspect(song))
         }}
       >
         {song.title}

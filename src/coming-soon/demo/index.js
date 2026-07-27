@@ -6,8 +6,6 @@ import SamplingMaster from 'bemuse/sampling-master'
 import ctx from 'bemuse/audio-context'
 import { Compiler, Notes, Reader, SongInfo, Timing } from 'bms'
 
-import template from './template.jade'
-
 export function main(element) {
   $(element).text('Technical Demo!').on('click', handler)
 
@@ -19,7 +17,9 @@ export function main(element) {
   }
 
   function ui() {
-    const el = $(template()).appendTo('body')
+    const el = $(
+      `<div class="jukebox"><div class="jukebox--overlay"></div><div class="jukebox--inner"><h1>BMS Jukebox</h1><p class="jukebox--status js-log">Waiting for BMS file...</p><p>Google Chrome: Drag a BMS folder into this box.</p><p>Firefox, Safari: Select all files (BMS+sounds) and drag into this box.</p><button class="js-play">Click Here to Play</button><div class="js-sampler jukebox--sampler"></div></div></div>`
+    ).appendTo('body')
     el.find('.js-play').hide()
     el.on('dragover', () => false).on('drop', (e) => {
       e.preventDefault()

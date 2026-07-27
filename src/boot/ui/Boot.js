@@ -1,11 +1,10 @@
 import './Boot.scss'
-import template from './Boot.jade'
 import version from 'bemuse/utils/version'
 
 const boot = document.createElement('div')
 boot.id = 'boot'
 boot.className = 'Boot'
-boot.innerHTML = template()
+boot.innerHTML = `<div class="Bootのcontent"><div class="Bootのdj"></div><div class="Bootのtext"><div><strong>Bemuse <span class="js-version"></span></strong></div><div class="js-status">Loading page</div></div></div>`
 
 boot
   .querySelector('.js-version')

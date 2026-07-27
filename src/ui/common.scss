@@ -51,8 +51,8 @@ $link-color: #039;
   background-size: cover;
 }
 
-@mixin main-bg {
-  @include scene-background(url(~bemuse/ui/images/bg/a.jpg));
+@mixin main-bg($url) {
+  @include scene-background($url);
 }
 
 @mixin soft-shadow {
